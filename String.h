@@ -1,12 +1,19 @@
-class String{
+#include <cstdlib>
 
+#ifndef STRING_
+#define STRING_
+
+class String{
+  
   protected:
   char* data_;
-  size_t size_;
-  size_t capacity_;
-  static size_t MAX_SIZE;
+  std::size_t size_;
+  std::size_t capacity_;
+  static const std::size_t MAX_SIZE=100;
   
   public:
-  
+  String(std::size_t capacity);
   
 };
+
+#endif //STRING_
