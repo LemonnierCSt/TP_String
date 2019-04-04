@@ -12,8 +12,9 @@ class String{
   static const std::size_t MAX_SIZE=100;
   
   public:
-  String(std::size_t capacity);
-  
+  //Constructors
+    String(std::size_t capacity);
+    
 };
 
 #endif //STRING_
