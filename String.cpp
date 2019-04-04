@@ -9,9 +9,16 @@ String::String(std::size_t capacity){
   data_[0]='t';data_[1]='e';data_[2]='s';data_[3]='t'; data_[4]='\0';
 }
 
+String::String(const String& str){
+  data_= new char[str.capacity_];//Creation of an array in the heap.
+  for (int i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
+    data_[i]=str.data_[i]; 
+  }
+  size_=str.size_;
+  capacity_=str.capacity_;
+  
 
-
-
+}
   
   
 
