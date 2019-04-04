@@ -30,14 +30,13 @@ String::String(const char* chain){
   data_[nbchar+1] = '\0';
 }
 
-
 size_t String::length(){
   return size_;
 }
 
-
-
-
+size_t String::max_size(){
+  return MAX_SIZE;
+}
 
   
   

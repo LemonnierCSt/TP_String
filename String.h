@@ -7,17 +7,19 @@ class String{
   
   protected:
   char* data_;
-  std::size_t size_;
-  std::size_t capacity_;
-  static const std::size_t MAX_SIZE=100;
+  size_t size_;
+  size_t capacity_;
+  static const size_t MAX_SIZE=100;
   
   public:
   //Constructors
-    String(std::size_t capacity);
+    String(size_t capacity);
     String(const char* chain);
     
+    
   //Methods
-    std::size_t length();
+    size_t length();
+    size_t max_size();
 };
 
 #endif //STRING_
