@@ -14,7 +14,7 @@ class String{
   public:
   //Constructors
     String(std::size_t capacity);
-    
+    String(const char* chain);
 };
 
 #endif //STRING_
