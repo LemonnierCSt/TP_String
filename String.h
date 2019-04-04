@@ -14,6 +14,8 @@ class String{
   public:
   //Constructors
     String(std::size_t capacity);
+  //Get capacity_ attribute
+    std::size_t capacity();
     
 };
 
