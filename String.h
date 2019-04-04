@@ -1,5 +1,5 @@
 #include <cstdlib>
-
+#include <iostream>
 #ifndef STRING_
 #define STRING_
 
@@ -15,6 +15,9 @@ class String{
   //Constructors
     String(std::size_t capacity);
     String(const char* chain);
+    
+  //Methods
+    std::size_t length();
 };
 
 #endif //STRING_

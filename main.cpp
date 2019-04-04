@@ -7,5 +7,6 @@ int main(){
   String str(cap);
   char loup[] = "loup";
   String Stringloup(loup);
+  std::cout << Stringloup.length() << std::endl;
   return 0;
 }

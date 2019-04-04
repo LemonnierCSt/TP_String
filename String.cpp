@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include "String.h"
 
-String::String(std::size_t capacity){
+String::String(size_t capacity){
   data_=new char[capacity];
   capacity_=capacity;
   size_=4;
@@ -11,7 +11,7 @@ String::String(std::size_t capacity){
 
 String::String(const char* chain){
 
-  std::size_t nbchar = 0;
+  size_t nbchar = 0;
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;
   }
@@ -28,6 +28,11 @@ String::String(const char* chain){
     data_[i]=chain[i];
   }
   data_[nbchar+1] = '\0';
+}
+
+
+size_t String::length(){
+  return size_;
 }
 
 
