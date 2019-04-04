@@ -16,9 +16,16 @@ String::String(const String& str){
   }
   size_=str.size_;
   capacity_=str.capacity_;
-  
+}  
 
+//Get capacity_ attribute
+std::size_t String::capacity(){
+  return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
 }
+
+
+
+
   
   
 
