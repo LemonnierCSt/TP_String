@@ -8,6 +8,8 @@ int main(){
   String str2(cap);
   std::cout<<(str.capacity()==10)<<std::endl;
 
+  std::cout<<"Test c_str:"<<std::endl;
+  std::cout<<str.c_str()<<std::endl;
 
   return 0;
   

@@ -18,7 +18,8 @@ class String{
 
   //Get capacity_ attribute
     std::size_t capacity();
-    
+  //Getter of the current value of the string object
+    const char* c_str ()const;
 
 };
 

@@ -23,7 +23,10 @@ std::size_t String::capacity(){
   return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
 }
 
-
+//Getter of the current value of the string object
+const char* String::c_str() const{
+  return data_;
+}
 
 
   
