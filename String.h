@@ -20,7 +20,14 @@ class String{
     std::size_t capacity();
   //empty method
     bool empty();
-    
+  //Copy constructor
+    String(const String& str);
+  //Get capacity_ attribute
+    std::size_t capacity();
+  //Getter of the current value of the string object
+    const char* c_str ()const;
+  //Getter of the current length of the string, in terms of bytes.
+    size_t size() const;
 };
 
 #endif //STRING_
