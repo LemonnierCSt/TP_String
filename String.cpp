@@ -11,7 +11,7 @@ String::String(std::size_t capacity){
 
 String::String(const String& str){
   data_= new char[str.capacity_];//Creation of an array in the heap.
-  for (int i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
+  for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
     data_[i]=str.data_[i]; 
   }
   size_=str.size_;
