@@ -13,17 +13,30 @@ class String{
   
   public:
   //Constructors
-    String(size_t capacity);
+  
   //Constructor c-string
     String(const char* chain);
-    
   //Method length
     size_t length();
   //Method max_size
     size_t max_size();
   //Method resize
     void resize(size_t n);
-    
+
+    String(std::size_t capacity);
+  //Destructor
+    ~String();
+  //Get capacity_ attribute
+    std::size_t capacity();
+  //empty method
+    bool empty();
+  //Copy constructor
+    String(const String& str);
+  //Getter of the current value of the string object
+    const char* c_str ()const;
+  //Getter of the current length of the string, in terms of bytes.
+    size_t size() const;
+
 };
 
 #endif //STRING_

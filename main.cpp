@@ -1,22 +1,33 @@
 #include "String.h"
 #include <iostream>
 #include <cstdlib> 
+#include <iostream>
 
 int main(){
   size_t cap=10;
   String str(cap);
-  
+
+  std::cout<<(str.capacity()==10)<<std::endl;// Unitary test : checks the capacity() method, must return 1
+  std::size_t cap1=15;
+  String str1(cap1);
+  std::cout<<(str1.empty()==false)<<std::endl;// Unitary test : checks the empty() method, must return 1
+
+  String str2(cap);
+  std::cout<<"Test c_str:"<<std::endl;
+  std::cout<<str.c_str()<<std::endl;
+
+  std::cout<<"Test size:"<<std::endl;
+  std::cout<<str.size()<<std::endl;
 
   
-  //Armande's tests
   char* loup = new char [5];
   loup[0]='l'; loup[1]='o'; loup[2]='u'; loup[3]='p'; loup[4]='\0';
   char* nothing = new char[5];
   nothing[0]='\0'; nothing[1]='a'; nothing[2]='b';
-  String nulstr(nothing);
-  
+    
   //Using constructor c-string
   String Stringloup(loup);
+  String nulstr(nothing);
   
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
