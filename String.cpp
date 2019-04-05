@@ -10,24 +10,27 @@ String::String(size_t capacity){
 }
 
 String::String(const char* chain){
-
+  
   size_t nbchar = 0;
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
-    nbchar+=1;
+    nbchar+=1;   
   }
   size_ = nbchar;
-  
-  if(nbchar<50){
-    capacity_ = size_*2;  //If I can, I allocate twice the size_ of my chain
-  } else if((nbchar>50) & (nbchar<100)){
-    capacity_ = size_+1;
+  if (nbchar<=100){
+    if(nbchar<50){
+      capacity_ = size_*2;  //If I can, I allocate twice the size_ of my chain
+    } else if((nbchar>50) & (nbchar<100)){
+      capacity_ = size_+1;
+    }
+    data_ = new char[nbchar+1]; //I add a space for the '\0'
+    for (size_t i =0; i < nbchar; i++){  //I create a new chain like the one in parameters.
+      data_[i]=chain[i];
+    }
+    data_[nbchar+1] = '\0';
+    }
+    else {
+    std::cout << "Your chain is too long : 100 char max please" << std::endl;
   }
-    
-  char* data_ = new char[nbchar+1]; //I add a space for the '\0'
-  for (size_t i =0; i < nbchar; i++){  //I create a new chain like the one in parameters.
-    data_[i]=chain[i];
-  }
-  data_[nbchar+1] = '\0';
 }
 
 size_t String::length(){
@@ -38,6 +41,6 @@ size_t String::max_size(){
   return MAX_SIZE;
 }
 
-  
+
   
 

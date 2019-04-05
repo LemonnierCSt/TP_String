@@ -14,12 +14,15 @@ class String{
   public:
   //Constructors
     String(size_t capacity);
+  //Constructor c-string
     String(const char* chain);
     
-    
-  //Methods
+  //Method length
     size_t length();
+  //Method max_size
     size_t max_size();
+
+    
 };
 
 #endif //STRING_
