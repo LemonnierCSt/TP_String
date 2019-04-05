@@ -28,7 +28,11 @@ const char* String::c_str() const{
   return data_;
 }
 
-
+//Getter of the current length of the string, in terms of bytes.
+size_t String::size() const{
+  return size_;   
+    
+}
   
   
 
