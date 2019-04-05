@@ -18,6 +18,15 @@ std::size_t String::capacity(){
   return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
 }
 
+//Empty method
+bool String::empty(){
+  bool isEmpty=false;
+  if(this->size_==0){ // checks the size of the string 
+    isEmpty=true;     //if size_ is equal to 0, it returns isEmpty=true
+    }
+  return isEmpty;
+}
+
 
 
 

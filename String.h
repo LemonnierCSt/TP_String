@@ -18,6 +18,8 @@ class String{
     ~String();
   //Get capacity_ attribute
     std::size_t capacity();
+  //empty method
+    bool empty();
     
 };
 
