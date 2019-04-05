@@ -41,6 +41,10 @@ size_t String::max_size(){
   return MAX_SIZE;
 }
 
-
+void String::resize(size_t n){
+  if(n <= size_){
+    data_[n]= '\0';
+  }
+}
   
 

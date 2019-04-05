@@ -21,7 +21,8 @@ class String{
     size_t length();
   //Method max_size
     size_t max_size();
-
+  //Method resize
+    void resize(size_t n);
     
 };
 

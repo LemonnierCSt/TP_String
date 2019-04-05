@@ -26,5 +26,7 @@ int main(){
   std::cout << (Stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
+  //Test method resize --> I need data_
+  Stringloup.resize(2);
   return 0;
 }
