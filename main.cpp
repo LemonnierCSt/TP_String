@@ -1,10 +1,12 @@
 #include "String.h"
+#include <iostream>
 #include <cstdlib> 
 #include <iostream>
 
 int main(){
-  std::size_t cap=10;
+  size_t cap=10;
   String str(cap);
+
   std::cout<<(str.capacity()==10)<<std::endl;// Unitary test : checks the capacity() method, must return 1
   std::size_t cap1=15;
   String str1(cap1);
@@ -20,6 +22,32 @@ int main(){
   std::cout<<"Test reserve:"<<std::endl;
   std::cout<<(str2.capacity()==20)<<std::endl; 
 
-  return 0;
+  std::cout<<"Test clear:"<<std::endl;
+  std::cout<<str.c_str()<<std::endl;
+  str.clear();
+  std::cout<<str.c_str()<<std::endl;
+
+
   
+  char* loup = new char [5];
+  loup[0]='l'; loup[1]='o'; loup[2]='u'; loup[3]='p'; loup[4]='\0';
+  char* nothing = new char[5];
+  nothing[0]='\0'; nothing[1]='a'; nothing[2]='b';
+    
+  //Using constructor c-string
+  String Stringloup(loup);
+  String nulstr(nothing);
+
+  
+  //Test method length()
+  std::cout << (nulstr.length()==0) << std::endl;
+  std::cout << (Stringloup.length()==4) << std::endl;
+  
+  //Test method max_size()
+  std::cout << (Stringloup.max_size()==100) << std::endl;
+  std::cout << (nulstr.max_size()==100) << std::endl;
+   
+  //Test method resize --> I need data_
+  Stringloup.resize(2);
+  return 0;
 }
