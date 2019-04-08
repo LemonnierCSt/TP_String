@@ -22,7 +22,8 @@ class String{
     const char* c_str ()const;
   //Getter of the current length of the string, in terms of bytes.
     size_t size() const;
-  
+  //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
+    void clear();
 };
 
 #endif //STRING_

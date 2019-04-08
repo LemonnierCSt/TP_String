@@ -13,6 +13,11 @@ int main(){
 
   std::cout<<"Test size:"<<std::endl;
   std::cout<<str.size()<<std::endl;
+  
+  std::cout<<"Test clear:"<<std::endl;
+  std::cout<<str.c_str()<<std::endl;
+  str.clear();
+  std::cout<<str.c_str()<<std::endl;
   return 0;
   
 }
