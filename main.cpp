@@ -23,18 +23,15 @@ int main(){
   std::cout<<str.c_str()<<std::endl;
   str.clear();
   std::cout<<str.c_str()<<std::endl;
-
-
   
-  char* loup = new char [5];
-  loup[0]='l'; loup[1]='o'; loup[2]='u'; loup[3]='p'; loup[4]='\0';
-  char* nothing = new char[5];
-  nothing[0]='\0'; nothing[1]='a'; nothing[2]='b';
-    
+  
+  char loup [5]={'l','o','u','p'} ;
+  char nothing[5]={'\0','a','b'};
+  
   //Using constructor c-string
   String Stringloup(loup);
   String nulstr(nothing);
-
+  
   
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
