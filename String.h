@@ -12,8 +12,8 @@ class String{
   static const size_t MAX_SIZE=100;
   
   public:
-  //Constructors
-  
+  //Constructor with the capacity
+    String(std::size_t capacity);
   //Constructor c-string
     String(const char* chain);
   //Method length
@@ -23,7 +23,6 @@ class String{
   //Method resize
     void resize(size_t n);
 
-    String(std::size_t capacity);
   //Destructor
     ~String();
   //Get capacity_ attribute
@@ -38,6 +37,7 @@ class String{
     size_t size() const;
   //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
     void clear();
+  
 
 };
 
