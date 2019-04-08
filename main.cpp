@@ -16,6 +16,9 @@ int main(){
 
   std::cout<<"Test size:"<<std::endl;
   std::cout<<str.size()<<std::endl;
+  str2.reserve(20);
+  std::cout<<"Test reserve:"<<std::endl;
+  std::cout<<(str2.capacity()==20)<<std::endl; 
 
   return 0;
   

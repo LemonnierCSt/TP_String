@@ -9,12 +9,11 @@ String::String(std::size_t capacity){
   data_[0]='t';data_[1]='e';data_[2]='s';data_[3]='t'; data_[4]='\0';
 }
 
-<<<<<<< HEAD
 //Destructor
 String:: ~String(){
   delete this-> data_;
 }
-=======
+
 String::String(const String& str){
   data_= new char[str.capacity_];//Creation of an array in the heap.
   for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
@@ -47,6 +46,14 @@ const char* String::c_str() const{
 size_t String::size() const{
   return size_;   
     
+}
+
+//reserve method
+void String::reserve(std::size_t n){ //Changes capacity_ 
+  if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
+    capacity_=n;
+  }
+
 }
   
   
