@@ -88,12 +88,11 @@ size_t String::size() const{
 }
 //Clear
 void String::clear(){
-  delete data_;
-  size_=0;
   data_[0]='\0';
   
- 
-}  
+}
+  
+
   
 
 
