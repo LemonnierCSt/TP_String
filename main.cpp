@@ -4,10 +4,10 @@
 #include <iostream>
 
 int main(){
-  size_t cap=10;
+  size_t cap=0;
   String str(cap);
 
-  std::cout<<(str.capacity()==10)<<std::endl;// Unitary test : checks the capacity() method, must return 1
+  std::cout<<(str.capacity()==1)<<std::endl;// Unitary test : checks the capacity() method, must return 1
   std::size_t cap1=15;
   String str1(cap1);
   std::cout<<(str1.empty()==false)<<std::endl;// Unitary test : checks the empty() method, must return 1
@@ -26,18 +26,18 @@ int main(){
   std::cout<<str.c_str()<<std::endl;
   str.clear();
   std::cout<<str.c_str()<<std::endl;
-
-
   
-  char* loup = new char [5];
-  loup[0]='l'; loup[1]='o'; loup[2]='u'; loup[3]='p'; loup[4]='\0';
-  char* nothing = new char[5];
-  nothing[0]='\0'; nothing[1]='a'; nothing[2]='b';
-    
+  std::cout<<"Test operator=:"<<std::endl;
+  str='c';
+  std::cout<<str.c_str()<<std::endl;
+ 
+  char loup [5]={'l','o','u','p'} ;
+  char nothing[5]={'\0','a','b'};
+  
   //Using constructor c-string
   String Stringloup(loup);
   String nulstr(nothing);
-
+  
   
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
@@ -49,7 +49,7 @@ int main(){
    
   //Test method resize --> I need data_
   Stringloup.resize(2);
-  
+
   //Tests operator = (char*) method
   std::cout<<"Test operator = (char*): data_ and size_ "<<std::endl;
   str2=loup;
@@ -60,9 +60,6 @@ int main(){
   std::cout<<"Test operator + (String)"<<std::endl;
   String concatStr=str1+str2;
   std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
-  
-  delete [] loup;
-  delete [] nothing;
-   
+
   return 0;
 }

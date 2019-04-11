@@ -7,6 +7,15 @@ String::String(size_t capacity){
   size_=4;
   //*data_={'t','e','s','t','\0'};QUESTION 1
   data_[0]='t';data_[1]='e';data_[2]='s';data_[3]='t'; data_[4]='\0';
+  if(capacity<=0||capacity>MAX_SIZE){
+    std::cout<<"The capacity resquested is either <=0 or >100, so it have been automatically set to 1"<<std::endl;
+    capacity_=1;
+  }else{
+    capacity_=capacity;// storage space currently allocated for the string (without the \0)
+  }
+  data_=new char[capacity_+1];
+  size_=1;
+  data_[0]='t';data_[1]='\0';
 }
 
 String::String(const char* chain){
@@ -20,13 +29,13 @@ String::String(const char* chain){
     if(nbchar<50){
       capacity_ = size_*2;  //If I can, I allocate twice the size_ of my chain
     } else if((nbchar>50) & (nbchar<100)){
-      capacity_ = size_+1;
+      capacity_ = size_;
     }
     data_ = new char[nbchar+1]; //I add a space for the '\0'
     for (size_t i =0; i < nbchar; i++){  //I create a new chain like the one in parameters.
       data_[i]=chain[i];
     }
-    data_[nbchar+1] = '\0';
+    data_[nbchar] = '\0';//WHAT data_[nbchar+1] = '\0';
     }
     else {
     std::cout << "Your chain is too long : 100 char max please" << std::endl;
@@ -94,10 +103,8 @@ void String::reserve(std::size_t n){ //Changes capacity_
 }
 //Clear
 void String::clear(){
-  delete [] data_;
+  data_[0]='\0';
   size_=0;
-  data_[0]='\0'; 
- 
 }
 
 //operator = method (char* for parameter)
@@ -125,6 +132,18 @@ String operator+(const String& lhs, const String& rhs) {
   delete newData;
   return concatenate;
 }
-  
+ 
+ //Operator = 
+String& String::operator= (char c){
+  if (capacity_<1){
+    delete[] data_;
+    data_= new char[2];
+    capacity_=1;
+  }
+  data_[0]=c;
+  data_[1]='\0';
+  return *this;
+} 
+
 
 
