@@ -45,11 +45,52 @@ size_t String::max_size(){
 }
 
 //Method resize: takes in parameter the position of the last character, and shortens the string
-void String::resize(size_t n){
-  if(n <= size_){
-    data_[n]= '\0';
+void String::resize(size_t n, char c){
+
+  if(n <= size_){ //if we want to shortten the chain
+    char* newchain = new char[n+1];  //I create a new char[], and copy the old data_ in it
+    size_ = n;
+    for (size_t i = 0; i<size_; i++){
+      newchain[i] = data_[i];
+    }
+    newchain[n]= '\0';
+    delete this -> data_;  //I delete the old data_ and replace it by the new one
+    data_ = new char[size_ + 1];
+    for (size_t j = 0; j<= size_ ; j++){
+      data_[j] = newchain[j];
+    }
+    delete newchain;
+  }
+  
+  else if((n > size_) & (size_+1 < MAX_SIZE)){ //if we want to have a longer chain
+    char* newchain = new char[n+1];
+    for (size_t i = 0; i<size_; i++){
+      newchain[i]=data_[i];
+    }
+    delete this-> data_;
+    data_ = new char[size_ + 1];
+    for (size_t i = 0; i<size_; i++){
+      data_[i]=newchain[i];
+    }
+    for (size_t j = size_; j<n; j++){
+      data_[j]=c;
+    }
+    data_[n]='\0';
+    size_ = n;
+    capacity_ = n+1;
+    delete newchain;
+  } 
+  
+  else if (n > MAX_SIZE){ //If we ask for a size too big
+    std::cout << "The size you want is bigger than the maximum size" << std::endl; //message printed
+    delete this -> data_;
+    data_ = new char[1];
+    data_[0] ='\0'; //empty char[]
+    size_ = 0;
+    capacity_ = 1;
   }
 }
+
 
 //Destructor
 String:: ~String(){

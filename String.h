@@ -23,7 +23,7 @@ class String{
   //Method max_size
     size_t max_size();
   //Method resize
-    void resize(size_t n);
+    void resize(size_t n, char c);
 
     String(std::size_t capacity);
   //Destructor
@@ -41,6 +41,7 @@ class String{
   //Operator = string
     String& operator= (const String& str);
 };
+
   //Operator + char
     String operator+ (const String& lhs, char rhs);
 

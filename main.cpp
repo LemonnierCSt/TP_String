@@ -40,7 +40,9 @@ int main(){
   std::cout << (nulstr.max_size()==100) << std::endl;
    
   //Test method resize --> I need data_
-  Stringloup.resize(2);
+  Stringloup.resize(2,'c');
+  std::cout << Stringloup.c_str() << std::endl;
+  Stringloup.resize(5,'c');
   std::cout << Stringloup.c_str() << std::endl;
     
   //Test operator = string
