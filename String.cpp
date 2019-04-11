@@ -111,6 +111,20 @@ String String::operator=(const char* c){ // c is const because we don't change I
   data_[i+1]='\0';
   return *this;                         // return the current updated object
 }  
+
+String operator+(const String& lhs, const String& rhs) {
+
+  char* newData=new char[lhs.capacity_+rhs.capacity_ +1];
+  for(int i=0;i<lhs.size_;++i){
+    newData[i]=lhs.data_[i];
+  }
+  for(int j=0;j<=(rhs.size_);++j){
+    newData[j+lhs.size_]=rhs.data_[j];
+  }
+  String concatenate (newData);
+  delete newData;
+  return concatenate;
+}
   
 
 

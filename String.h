@@ -4,7 +4,8 @@
 #define STRING_
 
 class String{
-  
+
+  friend String operator+(const String& lhs, const String& rhs);
   protected:
   char* data_;
   size_t size_;
@@ -45,6 +46,8 @@ class String{
     String operator=(const char* c);
 
 };
+
+  String operator+(const String& lhs, const String& rhs);
 
 
 

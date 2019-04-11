@@ -55,6 +55,13 @@ int main(){
   str2=loup;
   std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
   std::cout <<"size_ value : "<< (str2.length()) << std::endl;
+  
+  //Test operator + (String arguments)
+  std::cout<<"Test operator + (String)"<<std::endl;
+  String concatStr=str1+str2;
+  std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
+  delete [] loup;
+  delete [] nothing;
    
   return 0;
 }
