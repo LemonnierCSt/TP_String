@@ -4,10 +4,10 @@
 #include <iostream>
 
 int main(){
-  size_t cap=10;
+  size_t cap=0;
   String str(cap);
 
-  std::cout<<(str.capacity()==10)<<std::endl;// Unitary test : checks the capacity() method, must return 1
+  std::cout<<(str.capacity()==1)<<std::endl;// Unitary test : checks the capacity() method, must return 1
   std::size_t cap1=15;
   String str1(cap1);
   std::cout<<(str1.empty()==false)<<std::endl;// Unitary test : checks the empty() method, must return 1
@@ -46,5 +46,6 @@ int main(){
    
   //Test method resize --> I need data_
   Stringloup.resize(2);
+  
   return 0;
 }

@@ -2,11 +2,15 @@
 #include "String.h"
 
 String::String(size_t capacity){
-  data_=new char[capacity+1];
-  capacity_=capacity;// storage space currently allocated for the string (without the \0)
-  size_=4;
-  //*data_={'t','e','s','t','\0'};QUESTION 1
-  data_[0]='t';data_[1]='e';data_[2]='s';data_[3]='t'; data_[4]='\0';
+  if(capacity<=0||capacity>MAX_SIZE){
+    std::cout<<"The capacity resquested is either <=0 or >100, so it have been automatically set to 1"<<std::endl;
+    capacity_=1;
+  }else{
+    capacity_=capacity;// storage space currently allocated for the string (without the \0)
+  }
+  data_=new char[capacity_+1];
+  size_=1;
+  data_[0]='t';data_[1]='\0';
 }
 
 String::String(const char* chain){
