@@ -89,7 +89,7 @@ size_t String::size() const{
 //Clear
 void String::clear(){
   data_[0]='\0';
-  
+  size_=0;
 }
  //Operator = 
 String& String::operator= (char c){
