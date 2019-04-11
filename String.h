@@ -21,8 +21,8 @@ class String{
   //Method max_size
     size_t max_size();
   //Method resize
-    void resize(size_t n);
-
+    void resize(size_t n);   
+  //Constructor #2
     String(std::size_t capacity);
   //Destructor
     ~String();
@@ -40,8 +40,12 @@ class String{
   // reserve method
     void reserve(std::size_t n);
   //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
-    void clear();
+    void clear();  
+  // operator = method ( cha* for parameter)
+    String operator=(const char* c);
 
 };
+
+
 
 #endif //STRING_

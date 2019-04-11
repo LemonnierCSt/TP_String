@@ -49,5 +49,12 @@ int main(){
    
   //Test method resize --> I need data_
   Stringloup.resize(2);
+  
+  //Tests operator = (char*) method
+  std::cout<<"Test operator = (char*): data_ and size_ "<<std::endl;
+  str2=loup;
+  std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
+  std::cout <<"size_ value : "<< (str2.length()) << std::endl;
+   
   return 0;
 }

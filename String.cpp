@@ -92,13 +92,24 @@ void String::reserve(std::size_t n){ //Changes capacity_
   }
 
 }
-
 //Clear
 void String::clear(){
   delete data_;
   size_=0;
   data_[0]='\0'; 
  
+}
+
+//operator = method (char* for parameter)
+String String::operator=(const char* c){ // c is const because we don't change It
+  int i=0;            
+  do{                                   //copy of c in data_
+    data_[i]=c[i];
+    ++i;
+  }while(c[i]!='\0');
+  size_=i;                              //change of size_ with the number of elements of c
+  data_[i+1]='\0';
+  return *this;                         // return the current updated object
 }  
   
 
