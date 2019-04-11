@@ -24,6 +24,8 @@ int main(){
   loup[0]='l'; loup[1]='o'; loup[2]='u'; loup[3]='p'; loup[4]='\0';
   char* nothing = new char[5];
   nothing[0]='\0'; nothing[1]='a'; nothing[2]='b';
+  char* cat = new char[4];
+  cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
     
   //Using constructor c-string
   String Stringloup(loup);
@@ -39,5 +41,12 @@ int main(){
    
   //Test method resize --> I need data_
   Stringloup.resize(2);
+  std::cout << Stringloup.c_str() << std::endl;
+    
+  //Test operator = string
+  Stringloup = str;
+  std::cout << Stringloup.c_str() << std::endl;
+  Stringloup = cat;
+  std::cout << Stringloup.c_str() << std::endl;
   return 0;
 }

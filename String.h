@@ -4,7 +4,7 @@
 #define STRING_
 
 class String{
-  
+
   protected:
   char* data_;
   size_t size_;
@@ -35,8 +35,11 @@ class String{
   //Getter of the current value of the string object
     const char* c_str ()const;
   //Getter of the current length of the string, in terms of bytes.
-    size_t size() const;
-
+    size_t size() const;    
+  //Operator = string
+    String& operator= (const String& str);
 };
+  
+
 
 #endif //STRING_

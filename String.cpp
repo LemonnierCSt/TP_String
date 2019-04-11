@@ -51,7 +51,6 @@ void String::resize(size_t n){
   }
 }
 
-
 //Destructor
 String:: ~String(){
   delete this-> data_;
@@ -88,6 +87,19 @@ const char* String::c_str() const{
 //Getter of the current length of the string, in terms of bytes.
 size_t String::size() const{
   return size_;   
+}
+
+//Operator = string
+String& String::operator= (const String& str){
+  size_ = str.size_;  //changing the attributes of my string
+  capacity_ = str.capacity_;
+  delete [] data_;  //I delete the old data to replace it by the new one
+  char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data
+  for (size_t i = 0; i<size_; i++){
+    newdata[i] = str.data_[i];
+  }
+  data_ = newdata;
+  return *this;
 }
 
 
