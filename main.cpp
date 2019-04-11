@@ -27,7 +27,7 @@ int main(){
   char* cat = new char[4];
   cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
     
-  //Using constructor c-string
+  //Using constructor c-String
   String Stringloup(loup);
   String nulstr(nothing);
   
@@ -45,14 +45,18 @@ int main(){
   Stringloup.resize(5,'c');
   std::cout << Stringloup.c_str() << std::endl;
     
-  //Test operator = string
+  //Test operator = String
   Stringloup = str;
   std::cout << Stringloup.c_str() << std::endl;
   Stringloup = cat;
   std::cout << Stringloup.c_str() << std::endl;
   
   //Test operator + char
-  Stringloup = str + 'u' + 's';
+  String Stringplus(str + 'u');
   std::cout << Stringloup.c_str() << std::endl;
+  
+  delete loup;
+  delete nothing;
+  delete cat;
   return 0;
 }

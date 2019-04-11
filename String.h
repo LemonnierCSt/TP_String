@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
-#ifndef STRING_
-#define STRING_
+#ifndef String_
+#define String_
 
 class String{
 
@@ -16,7 +16,7 @@ class String{
   public:
   //Constructors
   
-  //Constructor c-string
+  //Constructor c-String
     String(const char* chain);
   //Method length
     size_t length();
@@ -34,15 +34,15 @@ class String{
     bool empty();
   //Copy constructor
     String(const String& str);
-  //Getter of the current value of the string object
+  //Getter of the current value of the String object
     const char* c_str ()const;
-  //Getter of the current length of the string, in terms of bytes.
+  //Getter of the current length of the String, in terms of bytes.
     size_t size() const;    
-  //Operator = string
+  //Operator = String
     String& operator= (const String& str);
 };
 
   //Operator + char
     String operator+ (const String& lhs, char rhs);
 
-#endif //STRING_
+#endif //String_
