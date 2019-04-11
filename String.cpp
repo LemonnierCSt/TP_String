@@ -49,7 +49,7 @@ void String::resize(size_t n){
 
 //Destructor
 String:: ~String(){
-  delete this-> data_;
+  delete [] data_;
 }
 
 String::String(const String& str){
@@ -94,7 +94,7 @@ void String::reserve(std::size_t n){ //Changes capacity_
 }
 //Clear
 void String::clear(){
-  delete data_;
+  delete [] data_;
   size_=0;
   data_[0]='\0'; 
  
