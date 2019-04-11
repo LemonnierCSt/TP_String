@@ -8,8 +8,8 @@ class String{
   protected:
   char* data_;
   size_t size_;
-  size_t capacity_;
-  static const size_t MAX_SIZE=100;
+  size_t capacity_;//storage space currently allocated for the string (without the \0)
+  static const size_t MAX_SIZE=100;//maximum length the string can reach.
   
   public:
   //Constructor with the capacity
@@ -39,7 +39,7 @@ class String{
     void clear();
   //Operator = 
     String& operator= (char c);
-
+  
 };
 
 #endif //STRING_
