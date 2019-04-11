@@ -91,7 +91,17 @@ void String::clear(){
   data_[0]='\0';
   
 }
-  
+ //Operator = 
+String& String::operator= (char c){
+  if (capacity_<2){
+    delete[] data_;
+    data_= new char[2];
+    capacity_=2;
+  }
+  data_[0]=c;
+  data_[1]='\0';
+  return *this;
+} 
 
   
 

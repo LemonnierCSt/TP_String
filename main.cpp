@@ -24,7 +24,10 @@ int main(){
   str.clear();
   std::cout<<str.c_str()<<std::endl;
   
-  
+  std::cout<<"Test operator=:"<<std::endl;
+  str='c';
+  std::cout<<str.c_str()<<std::endl;
+ 
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
   

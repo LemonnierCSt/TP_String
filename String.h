@@ -37,7 +37,8 @@ class String{
     size_t size() const;
   //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
     void clear();
-  
+  //Operator = 
+    String& operator= (char c);
 
 };
 
