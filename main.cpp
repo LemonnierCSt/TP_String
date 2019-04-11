@@ -60,6 +60,7 @@ int main(){
   std::cout<<"Test operator + (String)"<<std::endl;
   String concatStr=str1+str2;
   std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
+  
   delete [] loup;
   delete [] nothing;
    

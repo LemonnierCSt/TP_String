@@ -2,7 +2,7 @@
 #include "String.h"
 
 String::String(size_t capacity){
-  data_=new char[capacity];
+  data_=new char[capacity+1];
   capacity_=capacity;
   size_=4;
   //*data_={'t','e','s','t','\0'};QUESTION 1
@@ -53,7 +53,7 @@ String:: ~String(){
 }
 
 String::String(const String& str){
-  data_= new char[str.capacity_];//Creation of an array in the heap.
+  data_= new char[str.capacity_+1];//Creation of an array in the heap.
   for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
     data_[i]=str.data_[i]; 
   }
