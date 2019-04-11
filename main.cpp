@@ -48,5 +48,9 @@ int main(){
   std::cout << Stringloup.c_str() << std::endl;
   Stringloup = cat;
   std::cout << Stringloup.c_str() << std::endl;
+  
+  //Test operator + char
+  Stringloup = str + 'u' + 's';
+  std::cout << Stringloup.c_str() << std::endl;
   return 0;
 }

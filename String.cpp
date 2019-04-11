@@ -102,4 +102,24 @@ String& String::operator= (const String& str){
   return *this;
 }
 
+//Operator + char
+String operator+ (const String& lhs, char rhs){
+  if (2+lhs.size_ < lhs.MAX_SIZE){
+    char* mychain = new char[lhs.size_+3]; //I add a space for the '\0'
+    for (size_t i =0; i < lhs.size_; i++){  //I create a new chain like the one in parameters.
+      mychain[i]=lhs.data_[i];
+    }
+    mychain[lhs.size_]=rhs; //Adding the char
+    mychain[lhs.size_+1]='\0'; //Adding the end of the string
+    String newstring(mychain);
+    return newstring;
+  }
+  else {
+    std::cout << "If you add a char, your string would be too long" << std::endl; //Error message if the size of the string reaches MAX_SIZE.
+    char* mychain = new char[1];
+    mychain[0]='\0';  //data_ will be an array with no char, directly giving '\0'
+    String newstring(mychain);
+    return newstring;
+  }
+}
 
