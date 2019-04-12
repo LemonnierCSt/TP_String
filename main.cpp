@@ -52,8 +52,8 @@ int main(){
   std::cout << Stringloup.c_str() << std::endl;
   
   //Test operator + char
-  String Stringplus(str + 'u');
-  std::cout << Stringloup.c_str() << std::endl;
+  String Stringplus(Stringloup + 'u');
+  std::cout << Stringplus.c_str() << std::endl;
   
   delete loup;
   delete nothing;
