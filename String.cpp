@@ -104,9 +104,9 @@ String& String::operator= (char c){
   }
   data_[0]=c;
   data_[1]='\0';
+  size_=1;
+  
   return *this;
 } 
-
-
 
 
