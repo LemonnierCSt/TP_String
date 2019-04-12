@@ -13,6 +13,7 @@ String::String(size_t capacity){
   }else{
     capacity_=capacity;// storage space currently allocated for the string (without the \0)
   }
+  delete data_;
   data_=new char[capacity_+1];
   size_=1;
   data_[0]='t';data_[1]='\0';
