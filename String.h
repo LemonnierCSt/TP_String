@@ -7,11 +7,13 @@ class String{
 
   friend String operator+ (const String& lhs, char rhs); 
 
+  friend String operator+(const String& lhs, const String& rhs);
+  
   protected:
   char* data_;
   size_t size_;
-  size_t capacity_;
-  static const size_t MAX_SIZE=100;
+  size_t capacity_;//storage space currently allocated for the string (without the \0)
+  static const size_t MAX_SIZE=100;//maximum length the string can reach.
   
   public:
   //Constructors
@@ -35,14 +37,26 @@ class String{
   //Copy constructor
     String(const String& str);
   //Getter of the current value of the String object
-    const char* c_str ()const;
-  //Getter of the current length of the String, in terms of bytes.
-    size_t size() const;    
+    const char* c_str ()const; 
   //Operator = String
     String& operator= (const String& str);
+
+  //Getter of the current length of the string, in terms of bytes.
+    size_t size() const;
+
+  // reserve method
+    void reserve(std::size_t n);
+  //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
+    void clear();  
+  // operator = method ( cha* for parameter)
+    String operator=(const char* c);
+  //Operator = 
+    String& operator= (char c);
 };
 
+  String operator+(const String& lhs, const String& rhs);
   //Operator + char
-    String operator+ (const String& lhs, char rhs);
+  String operator+ (const String& lhs, char rhs);
 
-#endif //String_
+
+#endif //STRING_
