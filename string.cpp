@@ -1,8 +1,8 @@
 #include <cstdlib>
-#include "String.h"
+#include "string.h"
 
 //Constructor with capacity in parameter
-String::String(size_t capacity){
+string::string(size_t capacity){
   data_=new char[capacity+1];
   capacity_=capacity;
   size_=4;
@@ -20,8 +20,8 @@ String::String(size_t capacity){
   data_[0]='t';data_[1]='\0';
 }
 
-//Constructor c-String (by parameter)
-String::String(const char* chain){
+//Constructor c-string (by parameter)
+string::string(const char* chain){
   size_t nbchar = 0;
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;   
@@ -45,7 +45,7 @@ String::String(const char* chain){
 }
 
 //Copy constructor
-String::String(const String& str){
+string::string(const string& str){
   data_= new char[str.capacity_+1];//Creation of an array in the heap.
   for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
     data_[i]=str.data_[i]; 
@@ -55,7 +55,7 @@ String::String(const String& str){
 }
 
 //Destructor
-String:: ~String(){
+string:: ~string(){
   delete [] data_;
 }
 
@@ -63,33 +63,33 @@ String:: ~String(){
 //Methods:
 
 
-//Method length: returns the size of the String
-size_t String::length(){
+//Method length: returns the size of the string
+size_t string::length(){
   return size_;
 }
 
-//Getter of the current length of the String, in terms of bytes.
-size_t String::size() const{
+//Getter of the current length of the string, in terms of bytes.
+size_t string::size() const{
   return size_;   
 }
 
-//Method max_size: returns the maximum size a String can reach
-size_t String::max_size(){
+//Method max_size: returns the maximum size a string can reach
+size_t string::max_size(){
   return MAX_SIZE;
 }
 
 //Get capacity_ attribute
-std::size_t String::capacity(){
+std::size_t string::capacity(){
   return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
 }
 
-//Getter of the current value of the String object
-const char* String::c_str() const{
+//Getter of the current value of the string object
+const char* string::c_str() const{
   return data_;
 }
 
-//Method resize: takes in parameter the position of the last character, and shortens the String
-void String::resize(size_t n, char c){
+//Method resize: takes in parameter the position of the last character, and shortens the string
+void string::resize(size_t n, char c){
 
   if(n <= size_){ //if we want to shortten the chain
     char* newchain = new char[n+1];  //I create a new char[], and copy the old data_ in it
@@ -136,52 +136,52 @@ void String::resize(size_t n, char c){
 }
 
 //Empty method
-bool String::empty(){
+bool string::empty(){
   bool isEmpty=false;
-  if(this->size_==0){ // checks the size of the String 
+  if(this->size_==0){ // checks the size of the string 
     isEmpty=true;     //if size_ is equal to 0, it returns isEmpty=true
     }
   return isEmpty;
 }
 
 //Clear
-void String::clear(){
+void string::clear(){
   data_[0]='\0';
   size_=0;
 }
 
 //Reserve method
-void String::reserve(std::size_t n){ //Changes capacity_ 
+void string::reserve(std::size_t n){ //Changes capacity_ 
   if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
     capacity_=n;
   }
 }
 
 //Operator + char
-String operator+ (const String& lhs, char rhs){
+string operator+ (const string& lhs, char rhs){
   if (2+lhs.size_ < lhs.MAX_SIZE){
     char* mychain = new char[lhs.size_+2]; //I add a space for the '\0'
     for (size_t i =0; i < lhs.size_; i++){  //I create a new chain like the one in parameters.
       mychain[i]=lhs.data_[i];
     }
     mychain[lhs.size_]=rhs; //Adding the char
-    mychain[lhs.size_+1]='\0'; //Adding the end of the String
-    String newString(mychain);
+    mychain[lhs.size_+1]='\0'; //Adding the end of the string
+    string newstring(mychain);
     delete mychain;
-    return newString;
+    return newstring;
   }
   else {
-    std::cout << "If you add a char, your String would be too long" << std::endl; //Error message if the size of the String reaches MAX_SIZE.
+    std::cout << "If you add a char, your string would be too long" << std::endl; //Error message if the size of the string reaches MAX_SIZE.
     char* mychain = new char[1];
     mychain[0]='\0';  //data_ will be an array with no char, directly giving '\0'
-    String newString(mychain);
+    string newstring(mychain);
     delete mychain;
-    return newString;
+    return newstring;
   }
 }
 
-//Operator + String
-String operator+(const String& lhs, const String& rhs) {
+//Operator + string
+string operator+(const string& lhs, const string& rhs) {
   char* newData=new char[lhs.capacity_+rhs.capacity_ +1];
   for(int i=0;i<lhs.size_;++i){
     newData[i]=lhs.data_[i];
@@ -189,14 +189,14 @@ String operator+(const String& lhs, const String& rhs) {
   for(int j=0;j<=(rhs.size_);++j){
     newData[j+lhs.size_]=rhs.data_[j];
   }
-  String concatenate (newData);
+  string concatenate (newData);
   delete newData;
   return concatenate;
 }
 
-//Operator = String
-String& String::operator= (const String& str){
-  size_ = str.size_;  //changing the attributes of my String
+//Operator = string
+string& string::operator= (const string& str){
+  size_ = str.size_;  //changing the attributes of my string
   capacity_ = str.capacity_;
   delete [] data_;  //I delete the old data to replace it by the new one
   char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data
@@ -208,7 +208,7 @@ String& String::operator= (const String& str){
 }
 
 //Operator = char*
-String String::operator=(const char* c){ // c is const because we don't change It
+string string::operator=(const char* c){ // c is const because we don't change It
   int i=0;            
   do{                                   //copy of c in data_
     data_[i]=c[i];
@@ -220,7 +220,7 @@ String String::operator=(const char* c){ // c is const because we don't change I
 }  
 
 //Operator = char
-String& String::operator= (char c){
+string& string::operator= (char c){
   if (capacity_<1){
     delete[] data_;
     data_= new char[2];

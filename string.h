@@ -1,13 +1,13 @@
 #include <cstdlib>
 #include <iostream>
-#ifndef String_
-#define String_
+#ifndef string_
+#define string_
 
-class String{
+class string{
 
-  friend String operator+ (const String& lhs, char rhs); 
+  friend string operator+ (const string& lhs, char rhs); 
 
-  friend String operator+(const String& lhs, const String& rhs);
+  friend string operator+(const string& lhs, const string& rhs);
   
   protected:
   char* data_;
@@ -18,8 +18,8 @@ class String{
   public:
   //Constructors
   
-  //Constructor c-String
-    String(const char* chain);
+  //Constructor c-string
+    string(const char* chain);
   //Method length
     size_t length();
   //Method max_size
@@ -27,19 +27,19 @@ class String{
   //Method resize
     void resize(size_t n, char c);
 
-    String(std::size_t capacity);
+    string(std::size_t capacity);
   //Destructor
-    ~String();
+    ~string();
   //Get capacity_ attribute
     std::size_t capacity();
   //empty method
     bool empty();
   //Copy constructor
-    String(const String& str);
-  //Getter of the current value of the String object
+    string(const string& str);
+  //Getter of the current value of the string object
     const char* c_str ()const; 
-  //Operator = String
-    String& operator= (const String& str);
+  //Operator = string
+    string& operator= (const string& str);
 
   //Getter of the current length of the string, in terms of bytes.
     size_t size() const;
@@ -49,14 +49,14 @@ class String{
   //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
     void clear();  
   // operator = method ( cha* for parameter)
-    String operator=(const char* c);
+    string operator=(const char* c);
   //Operator = 
-    String& operator= (char c);
+    string& operator= (char c);
 };
 
-  String operator+(const String& lhs, const String& rhs);
+  string operator+(const string& lhs, const string& rhs);
   //Operator + char
-  String operator+ (const String& lhs, char rhs);
+  string operator+ (const string& lhs, char rhs);
 
 
-#endif //STRING_
+#endif //string_

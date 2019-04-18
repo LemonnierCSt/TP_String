@@ -1,18 +1,18 @@
-#include "String.h"
+#include "string.h"
 #include <iostream>
 #include <cstdlib> 
 #include <iostream>
 
 int main(){
   size_t cap=0;
-  String str(cap);
+  string str(cap);
 
   std::cout<<(str.capacity()==1)<<std::endl;// Unitary test : checks the capacity() method, must return 1
   std::size_t cap1=15;
-  String str1(cap1);
+  string str1(cap1);
   std::cout<<(str1.empty()==false)<<std::endl;// Unitary test : checks the empty() method, must return 1
 
-  String str2(cap);
+  string str2(cap);
   std::cout<<"Test c_str:"<<std::endl;
   std::cout<<str.c_str()<<std::endl;
 
@@ -39,34 +39,34 @@ int main(){
   cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
     
   //Using constructor c-string
-  String Stringloup(loup);
-  String nulstr(nothing);
-  String Sworking(work);
-  String Scat(cat);
+  string stringloup(loup);
+  string nulstr(nothing);
+  string Sworking(work);
+  string Scat(cat);
   
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
-  std::cout << (Stringloup.length()==4) << std::endl;
+  std::cout << (stringloup.length()==4) << std::endl;
   
   //Test method max_size()
-  std::cout << (Stringloup.max_size()==100) << std::endl;
+  std::cout << (stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
   //Test method resize --> I need data_
-  Stringloup.resize(2,'c');
-  std::cout << Stringloup.c_str() << std::endl;
-  Stringloup.resize(5,'c');
-  std::cout << Stringloup.c_str() << std::endl;
+  stringloup.resize(2,'c');
+  std::cout << stringloup.c_str() << std::endl;
+  stringloup.resize(5,'c');
+  std::cout << stringloup.c_str() << std::endl;
     
-  //Test operator = String
-  Stringloup = Sworking;
-  std::cout << Stringloup.c_str() << std::endl;
-  Stringloup = Scat;
-  std::cout << Stringloup.c_str() << std::endl;
+  //Test operator = string
+  stringloup = Sworking;
+  std::cout << stringloup.c_str() << std::endl;
+  stringloup = Scat;
+  std::cout << stringloup.c_str() << std::endl;
   
   //Test operator + char
-  String Stringplus(Stringloup + 'u');
-  std::cout << Stringplus.c_str() << std::endl;
+  string stringplus(stringloup + 'u');
+  std::cout << stringplus.c_str() << std::endl;
   
   delete cat;
 
@@ -76,9 +76,9 @@ int main(){
   std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
   std::cout <<"size_ value : "<< (str2.length()) << std::endl;
   
-  //Test operator + (String arguments)
-  std::cout<<"Test operator + (String)"<<std::endl;
-  String concatStr=str1+str2;
+  //Test operator + (string arguments)
+  std::cout<<"Test operator + (string)"<<std::endl;
+  string concatStr=str1+str2;
   std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
 
   return 0;
