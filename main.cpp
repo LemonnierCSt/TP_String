@@ -47,5 +47,15 @@ int main(){
   //Test method resize --> I need data_
   Stringloup.resize(2);
   
+  
+  std::cout<<"Test operator+:"<<std::endl;
+  std::cout<<str.c_str()<<std::endl;
+  char mychain[6]={'a','d','d','e','d','\0'};
+  String str3=mychain+str;
+  std::cout<<(str3.c_str()[5]=='c')<<std::endl;
+  
+  char mychain2[6]={'\0'};
+  String str4=(mychain2+str);
+  std::cout<<str4.c_str()<<std::endl;
   return 0;
 }

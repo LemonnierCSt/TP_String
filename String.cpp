@@ -109,4 +109,34 @@ String& String::operator= (char c){
   return *this;
 } 
 
+//Operator +(char*)
+String operator+ (const char*   lhs, const String& rhs){
+  size_t nb_char=0;
+  while(lhs[nb_char]!='\0'){//Computes the length of the char chain
+    nb_char+=1;
+  }
+  if(nb_char>(rhs.MAX_SIZE-rhs.size_)){//CheckS that the concatenation of the lhs and rhs is not longer that MAX_SIZE
+    std::cout<<"The char chain is too long, it will be shortened"<<std::endl;
+    nb_char=rhs.MAX_SIZE-rhs.size_;//This allows to shorten the char chain that will be be added 
+  }
+
+
+  String tmp(nb_char+rhs.size_);//String object with a capacity = size of the string+ the size of the char chain
+  
+  if(nb_char==0){//Manages the case of a  null chain (just composed by a '\0')
+    tmp.size_=0;
+    tmp.data_[0]='\0';
+  }else{//Manages the case of a  not null chain 
+    tmp.size_=nb_char+rhs.size_;                          
+    for(size_t i=0;i<nb_char+rhs.size_;++i){//copy the char chain
+      tmp.data_[i]=lhs[i];
+    }
+    for(size_t i=nb_char;i<rhs.size_+nb_char;++i){//copy the string's char chain
+      tmp.data_[i]=rhs.data_[nb_char-i];
+    }
+  }
+      
+      
+  return tmp;    
+}
 

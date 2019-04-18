@@ -39,7 +39,8 @@ class String{
     void clear();
   //Operator = 
     String& operator= (char c);
-  
+  //Operator +(char*)
+    friend String operator+ (const char*   lhs, const String& rhs);
 };
 
 #endif //STRING_
