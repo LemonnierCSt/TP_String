@@ -28,7 +28,6 @@ class string{
     size_t max_size();
   //Method resize
     void resize(size_t n, char c);
-
   //Destructor
     ~string();
   //Get capacity_ attribute
@@ -53,12 +52,11 @@ class string{
     
   // operator = method ( cha* for parameter)
     string operator=(const char* c);
+
     
   //Operator = 
     string& operator= (char c);
-
   
-
 };
 /*  
  //Operator +(char*)

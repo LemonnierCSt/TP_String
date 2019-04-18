@@ -39,34 +39,35 @@ int main(){
   cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
     
   //Using constructor c-string
-  string Stringloup(loup);
+  string stringloup(loup);
   string nulstr(nothing);
-  string Sworking(work);
-  string Scat(cat);
-
+  string sworking(work);
+  string scat(cat);
+  
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
-  std::cout << (Stringloup.length()==4) << std::endl;
+  std::cout << (stringloup.length()==4) << std::endl;
   
   //Test method max_size()
-  std::cout << (Stringloup.max_size()==100) << std::endl;
+  std::cout << (stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
-  //Test method resize
-  Stringloup.resize(2,'c');
-  std::cout << Stringloup.c_str() << std::endl;
-  Stringloup.resize(5,'c');
-  std::cout << Stringloup.c_str() << std::endl;
+  //Test method resize --> I need data_
+  stringloup.resize(2,'c');
+  std::cout << stringloup.c_str() << std::endl;
+  stringloup.resize(5,'c');
+  std::cout << stringloup.c_str() << std::endl;
     
   //Test operator = string
-  Stringloup = Sworking;
-  std::cout << Stringloup.c_str() << std::endl;
-  Stringloup = Scat;
-  std::cout << Stringloup.c_str() << std::endl;
+  stringloup = sworking;
+  std::cout << stringloup.c_str() << std::endl;
+  stringloup = scat;
+  std::cout << stringloup.c_str() << std::endl;
   
   //Test operator + char
-  string Stringplus(Stringloup + 'u');
-  std::cout << Stringplus.c_str() << std::endl;
+  string stringplus(stringloup + 'u');
+  std::cout << stringplus.c_str() << std::endl;
+  
   delete cat;
 
   //Tests operator + (char* and &string)
