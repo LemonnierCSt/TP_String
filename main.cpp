@@ -34,7 +34,7 @@ int main(){
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
   char work[5]={'w','o','r','k'};
-  
+
   char* cat = new char[4];
   cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
     
@@ -43,7 +43,7 @@ int main(){
   string nulstr(nothing);
   string Sworking(work);
   string Scat(cat);
-  
+
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
   std::cout << (Stringloup.length()==4) << std::endl;
@@ -52,7 +52,7 @@ int main(){
   std::cout << (Stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
-  //Test method resize --> I need data_
+  //Test method resize
   Stringloup.resize(2,'c');
   std::cout << Stringloup.c_str() << std::endl;
   Stringloup.resize(5,'c');
@@ -79,7 +79,6 @@ int main(){
   char mychain2[6]={'\0'};
   string str4=(mychain2+str);
   std::cout<<str4.c_str()<<std::endl;
-
   
 
   //Tests operator = (char*) method
