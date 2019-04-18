@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include "String.h"
 
+//Constructor with capacity in parameter
 String::String(size_t capacity){
   data_=new char[capacity+1];
   capacity_=capacity;
@@ -21,7 +22,6 @@ String::String(size_t capacity){
 
 //Constructor c-String (by parameter)
 String::String(const char* chain){
-  
   size_t nbchar = 0;
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;   
@@ -40,18 +40,52 @@ String::String(const char* chain){
     data_[nbchar] = '\0';//WHAT data_[nbchar+1] = '\0';
     }
     else {
-    std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, eroor message
+    std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message
   }
 }
+
+//Copy constructor
+String::String(const String& str){
+  data_= new char[str.capacity_+1];//Creation of an array in the heap.
+  for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
+    data_[i]=str.data_[i]; 
+  }
+  size_=str.size_;
+  capacity_=str.capacity_;
+}
+
+//Destructor
+String:: ~String(){
+  delete [] data_;
+}
+
+
+//Methods:
+
 
 //Method length: returns the size of the String
 size_t String::length(){
   return size_;
 }
 
+//Getter of the current length of the String, in terms of bytes.
+size_t String::size() const{
+  return size_;   
+}
+
 //Method max_size: returns the maximum size a String can reach
 size_t String::max_size(){
   return MAX_SIZE;
+}
+
+//Get capacity_ attribute
+std::size_t String::capacity(){
+  return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
+}
+
+//Getter of the current value of the String object
+const char* String::c_str() const{
+  return data_;
 }
 
 //Method resize: takes in parameter the position of the last character, and shortens the String
@@ -101,25 +135,6 @@ void String::resize(size_t n, char c){
   }
 }
 
-//Destructor
-String:: ~String(){
-  delete [] data_;
-}
-
-String::String(const String& str){
-  data_= new char[str.capacity_+1];//Creation of an array in the heap.
-  for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
-    data_[i]=str.data_[i]; 
-  }
-  size_=str.size_;
-  capacity_=str.capacity_;
-}  
-
-//Get capacity_ attribute
-std::size_t String::capacity(){
-  return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
-}
-
 //Empty method
 bool String::empty(){
   bool isEmpty=false;
@@ -129,27 +144,17 @@ bool String::empty(){
   return isEmpty;
 }
 
-//Getter of the current value of the String object
-const char* String::c_str() const{
-  return data_;
+//Clear
+void String::clear(){
+  data_[0]='\0';
+  size_=0;
 }
 
-//Getter of the current length of the String, in terms of bytes.
-size_t String::size() const{
-  return size_;   
-}
-
-//Operator = String
-String& String::operator= (const String& str){
-  size_ = str.size_;  //changing the attributes of my String
-  capacity_ = str.capacity_;
-  delete [] data_;  //I delete the old data to replace it by the new one
-  char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data
-  for (size_t i = 0; i<size_+1; i++){
-    newdata[i] = str.data_[i];
+//Reserve method
+void String::reserve(std::size_t n){ //Changes capacity_ 
+  if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
+    capacity_=n;
   }
-  data_ = newdata;
-  return *this;
 }
 
 //Operator + char
@@ -175,33 +180,8 @@ String operator+ (const String& lhs, char rhs){
   }
 }
 
-//reserve method
-void String::reserve(std::size_t n){ //Changes capacity_ 
-  if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
-    capacity_=n;
-  }
-
-}
-//Clear
-void String::clear(){
-  data_[0]='\0';
-  size_=0;
-}
-
-//operator = method (char* for parameter)
-String String::operator=(const char* c){ // c is const because we don't change It
-  int i=0;            
-  do{                                   //copy of c in data_
-    data_[i]=c[i];
-    ++i;
-  }while(c[i]!='\0');
-  size_=i;                              //change of size_ with the number of elements of c
-  data_[i+1]='\0';
-  return *this;                         // return the current updated object
-}  
-
+//Operator + String
 String operator+(const String& lhs, const String& rhs) {
-
   char* newData=new char[lhs.capacity_+rhs.capacity_ +1];
   for(int i=0;i<lhs.size_;++i){
     newData[i]=lhs.data_[i];
@@ -213,8 +193,33 @@ String operator+(const String& lhs, const String& rhs) {
   delete newData;
   return concatenate;
 }
- 
- //Operator = 
+
+//Operator = String
+String& String::operator= (const String& str){
+  size_ = str.size_;  //changing the attributes of my String
+  capacity_ = str.capacity_;
+  delete [] data_;  //I delete the old data to replace it by the new one
+  char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data
+  for (size_t i = 0; i<size_+1; i++){
+    newdata[i] = str.data_[i];
+  }
+  data_ = newdata;
+  return *this;
+}
+
+//Operator = char*
+String String::operator=(const char* c){ // c is const because we don't change It
+  int i=0;            
+  do{                                   //copy of c in data_
+    data_[i]=c[i];
+    ++i;
+  }while(c[i]!='\0');
+  size_=i;                              //change of size_ with the number of elements of c
+  data_[i+1]='\0';
+  return *this;                         // return the current updated object
+}  
+
+//Operator = char
 String& String::operator= (char c){
   if (capacity_<1){
     delete[] data_;
