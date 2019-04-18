@@ -143,14 +143,6 @@ bool string::empty(){
 
 
 
-//Operator = string
-string& string::operator= (const string& str){
-  size_ = str.size_;  //changing the attributes of my string
-  capacity_ = str.capacity_;
-  delete [] data_;  //I delete the old data to replace it by the new one
-  char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data
-  for (size_t i = 0; i<size_+1; i++){
-    newdata[i] = str.data_[i];
 
 //Clear
 void string::clear(){
@@ -196,10 +188,10 @@ string operator+ (const string& lhs, char rhs){
 //Operator + string
 string operator+(const string& lhs, const string& rhs) {
   char* newData=new char[lhs.capacity_+rhs.capacity_ +1];//error+TEST svp
-  for(int i=0;i<lhs.size_;++i){
+  for(size_t i=0;i<lhs.size_;++i){
     newData[i]=lhs.data_[i];
   }
-  for(int j=0;j<=(rhs.size_);++j){
+  for(size_t j=0;j<=(rhs.size_);++j){
     newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'(source d'erreur?)
   }
   string concatenate (newData);
@@ -212,7 +204,7 @@ string& string::operator= (const string& str){
   size_ = str.size_;  //changing the attributes of my string
   capacity_ = str.capacity_;
   delete [] data_;  //I delete the old data to replace it by the new one
-  char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data
+  char* newdata = new char[size_];  //The new data_ shall be a copy, and not directly the same data//ERROR(+1!)
   for (size_t i = 0; i<size_+1; i++){
     newdata[i] = str.data_[i];
   }
