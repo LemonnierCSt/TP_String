@@ -1,4 +1,4 @@
-CXXFLAGS= -Wall -O0 -g
+CXXFLAGS= -Wall -Wextra -O0 -g
 
 
 
