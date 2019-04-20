@@ -1,16 +1,16 @@
-CXXFLAGS= -Wall -O0 -g
+CXXFLAGS= -Wall -Wextra -O0 -g
 
 
 
-main: String.o main.o 
-	g++ -o main String.o main.o 
+main: string.o main.o 
+	g++ -o main string.o main.o 
 
-String.o: String.cpp String.h
-	g++ -o String.o -c ${CXXFLAGS} String.cpp 
+string.o: string.cpp string.h
+	g++ -o string.o -c ${CXXFLAGS} string.cpp 
 
-main.o: main.cpp String.h
+main.o: main.cpp string.h
 	g++ -o main.o -c ${CXXFLAGS} main.cpp 
 	
 	
 clean:
-	rm main.o String.o main
+	rm main.o string.o main
