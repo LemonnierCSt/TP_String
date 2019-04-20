@@ -61,6 +61,7 @@ String:: ~String(){
   delete [] data_;
 }
 
+//Copy constructor
 String::String(const String& str){
   data_= new char[str.capacity_+1];//Creation of an array in the heap.
   for (size_t i =0;i<=str.size_;i++){//copy the character sequence into it, included the '\0' char
@@ -94,6 +95,7 @@ size_t String::size() const{
   return size_;   
     
 }
+
 //reserve method
 void String::reserve(std::size_t n){ //Changes capacity_ 
   if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
@@ -101,7 +103,8 @@ void String::reserve(std::size_t n){ //Changes capacity_
   }
 
 }
-//Clear
+
+//Clear method
 void String::clear(){
   data_[0]='\0';
   size_=0;
@@ -132,8 +135,7 @@ String operator+(const String& lhs, const String& rhs) {
   delete newData;
   return concatenate;
 }
- 
- //Operator = 
+ //Operator = (as a char passed by argument)
 String& String::operator= (char c){
   if (capacity_<1){
     delete[] data_;
