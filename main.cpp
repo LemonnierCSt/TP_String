@@ -1,18 +1,18 @@
-#include "String.h"
+#include "string.h"
 #include <iostream>
 #include <cstdlib> 
 #include <iostream>
 
 int main(){
   size_t cap=0;
-  String str(cap);
+  string str(cap);
 
   std::cout<<(str.capacity()==1)<<std::endl;// Unitary test : checks the capacity() method, must return 1
   std::size_t cap1=15;
-  String str1(cap1);
+  string str1(cap1);
   std::cout<<(str1.empty()==false)<<std::endl;// Unitary test : checks the empty() method, must return 1
 
-  String str2(cap);
+  string str2(cap);
   std::cout<<"Test c_str:"<<std::endl;
   std::cout<<str.c_str()<<std::endl;
 
@@ -33,22 +33,54 @@ int main(){
  
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
-  
+  char work[5]={'w','o','r','k'};
+
+  char* cat = new char[4];
+  cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
+    
   //Using constructor c-string
-  String Stringloup(loup);
-  String nulstr(nothing);
-  
+  string stringloup(loup);
+  string nulstr(nothing);
+  string sworking(work);
+  string scat(cat);
   
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
-  std::cout << (Stringloup.length()==4) << std::endl;
+  std::cout << (stringloup.length()==4) << std::endl;
   
   //Test method max_size()
-  std::cout << (Stringloup.max_size()==100) << std::endl;
+  std::cout << (stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
   //Test method resize --> I need data_
-  Stringloup.resize(2);
+  stringloup.resize(2,'c');
+  std::cout << stringloup.c_str() << std::endl;
+  stringloup.resize(5,'c');
+  std::cout << stringloup.c_str() << std::endl;
+    
+  //Test operator = string
+  stringloup = sworking;
+  std::cout << stringloup.c_str() << std::endl;
+  stringloup = scat;
+  std::cout << stringloup.c_str() << std::endl;
+  
+  //Test operator + char
+  string stringplus(stringloup + 'u');
+  std::cout << stringplus.c_str() << std::endl;
+  
+  delete cat;
+
+  //Tests operator + (char* and &string)
+  std::cout<<"Test operator+:"<<std::endl;
+  std::cout<<str.c_str()<<std::endl;
+  char mychain[6]={'a','d','d','e','d','\0'};
+  string str3=mychain+str;
+  std::cout<<(str3.c_str()[5]=='c')<<std::endl;
+  
+  char mychain2[6]={'\0'};
+  string str4=(mychain2+str);
+  std::cout<<str4.c_str()<<std::endl;
+  
 
   //Tests operator = (char*) method
   std::cout<<"Test operator = (char*): data_ and size_ "<<std::endl;
@@ -56,10 +88,11 @@ int main(){
   std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
   std::cout <<"size_ value : "<< (str2.length()) << std::endl;
   
-  //Test operator + (String arguments)
-  std::cout<<"Test operator + (String)"<<std::endl;
-  String concatStr=str1+str2;
+  //Test operator + (string arguments)
+  std::cout<<"Test operator + (string)"<<std::endl;
+  string concatStr=str1+str2;
   std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
+
 
   return 0;
 }
