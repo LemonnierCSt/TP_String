@@ -24,11 +24,10 @@ string::string(const char* chain){
     size_ = nbchar;
     capacity_ = nbchar;
     data_ = new char[nbchar+1]; //I add a space for the '\0'
-    for (size_t i =0; i < nbchar; i++){  //I create a new chain like the one in parameters.
+    for (size_t i =0; i <= nbchar; i++){ //Copies the null-terminated chain into data_
       data_[i]=chain[i];
     }
-    data_[nbchar] = '\0';//Ending the data so that data_[nbchar+1] = '\0';
-    }
+  }
   else {
     std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message
   }
