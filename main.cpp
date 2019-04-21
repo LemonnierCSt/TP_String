@@ -35,7 +35,6 @@ int main(){
   char nothing[5]={'\0','a','b'};
   char work[5]={'w','o','r','k'};
   char longchar[100]={'c'};
-
   char cat[4]={'c','a','t'};
   
   //Creating a long char to test for the maximum size
@@ -57,10 +56,6 @@ int main(){
   std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
   std::cout << (nulstr.capacity()==0) << std::endl;
   std::cout << (maxlength.capacity()==100) << std::endl;
-  
-  //Verifying the capacity_
-  std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
-  std::cout << (nulstr.capacity()==0) << std::endl;
   
   //Test method length()
   std::cout << "Test method length:" << std::endl;
