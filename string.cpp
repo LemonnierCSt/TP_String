@@ -69,9 +69,9 @@ size_t string::max_size(){
   return MAX_SIZE;
 }
 
-//Get capacity_ attribute
+//Getter of capacity_ 
 std::size_t string::capacity(){
-  return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
+  return this->capacity_;// Returns the attribute capacity_ that is protected in our class
 }
 
 //Getter of the current value of the string object
