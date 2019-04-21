@@ -20,7 +20,7 @@ string::string(const char* chain){
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;   
   }
-  if (nbchar<=100){
+  if (nbchar<=MAX_SIZE){
     size_ = nbchar;
     capacity_ = nbchar;
     data_ = new char[nbchar+1]; //I add a space for the '\0'
