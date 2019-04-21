@@ -54,19 +54,23 @@ int main(){
   string maxlength(longchar);
   
   //Checking the capacity_
+  std::cout << "Checking the capacity of some strings:" << std::endl;
   std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
   std::cout << (nulstr.capacity()==0) << std::endl;
   std::cout << (maxlength.capacity()==100) << std::endl;
   
   //Test method length()
+  std::cout << "Test method length:" << std::endl;
   std::cout << (nulstr.length()==0) << std::endl;
   std::cout << (stringloup.length()==4) << std::endl;
   
   //Test method max_size()
+  std::cout << "Test method max_size:" << std::endl;
   std::cout << (stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
   //Test method resize(size_t n, char c)
+  std::cout << "Test method resize:" << std::endl;
   stringloup.resize(2,'c');
   std::cout << stringloup.c_str() << std::endl;
   stringloup.resize(5,'c');
@@ -75,12 +79,14 @@ int main(){
   stringloup.resize(102,'c');
     
   //Test operator = string
+  std::cout << "Test operator = string :" << std::endl;
   stringloup = sworking;
   std::cout << stringloup.c_str() << std::endl;
   stringloup = scat;
   std::cout << stringloup.c_str() << std::endl;
   
   //Test operator + char
+  std::cout << "Test operator + char :" << std::endl;
   string stringplus(stringloup + 'u');
   std::cout << stringplus.c_str() << std::endl;
   string otherplus(maxlength + 'u');
