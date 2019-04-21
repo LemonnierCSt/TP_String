@@ -34,19 +34,29 @@ int main(){
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
   char work[5]={'w','o','r','k'};
+  char longchar[100]={'c'};
 
   char* cat = new char[4];
   cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
-    
+  
+  //Creating a long char to test for the maximum size
+  int i = 0;
+  while (i  < 100){
+    longchar[i] = 'c';
+    i++;
+  }
+  
   //Using constructor c-string
   string stringloup(loup);
   string nulstr(nothing);
   string sworking(work);
   string scat(cat);
+  string maxlength(longchar);
   
-  //Verifying the capacity_
+  //Checking the capacity_
   std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
   std::cout << (nulstr.capacity()==0) << std::endl;
+  std::cout << (maxlength.capacity()==100) << std::endl;
   
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
@@ -73,6 +83,8 @@ int main(){
   //Test operator + char
   string stringplus(stringloup + 'u');
   std::cout << stringplus.c_str() << std::endl;
+  string otherplus(maxlength + 'u');
+  std::cout << otherplus.c_str() << std::endl;
   
   delete cat;
 
