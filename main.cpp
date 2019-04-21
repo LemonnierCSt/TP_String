@@ -44,6 +44,10 @@ int main(){
   string sworking(work);
   string scat(cat);
   
+  //Verifying the capacity_
+  std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
+  std::cout << (nulstr.capacity()==0) << std::endl;
+  
   //Test method length()
   std::cout << (nulstr.length()==0) << std::endl;
   std::cout << (stringloup.length()==4) << std::endl;
