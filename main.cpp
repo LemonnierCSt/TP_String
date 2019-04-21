@@ -36,8 +36,7 @@ int main(){
   char work[5]={'w','o','r','k'};
   char longchar[100]={'c'};
 
-  char* cat = new char[4];
-  cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
+  char cat[4]={'c','a','t'};
   
   //Creating a long char to test for the maximum size
   int i = 0;
@@ -91,8 +90,6 @@ int main(){
   std::cout << stringplus.c_str() << std::endl;
   string otherplus(maxlength + 'u');
   std::cout << otherplus.c_str() << std::endl;
-  
-  delete cat;
 
   //Tests operator + (char* and &string)
   std::cout<<"Test operator+:"<<std::endl;
