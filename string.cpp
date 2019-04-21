@@ -20,20 +20,16 @@ string::string(const char* chain){
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;   
   }
-  size_ = nbchar;
   if (nbchar<=100){
-    if(nbchar<50){
-      capacity_ = size_*2;  //If I can, I allocate twice the size_ of my chain
-    } else if((nbchar>50) & (nbchar<100)){
-      capacity_ = size_;
-    }
+    size_ = nbchar;
+    capacity_ = nbchar;
     data_ = new char[nbchar+1]; //I add a space for the '\0'
     for (size_t i =0; i < nbchar; i++){  //I create a new chain like the one in parameters.
       data_[i]=chain[i];
     }
-    data_[nbchar] = '\0';//WHAT data_[nbchar+1] = '\0';
+    data_[nbchar] = '\0';//Ending the data so that data_[nbchar+1] = '\0';
     }
-    else {
+  else {
     std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message
   }
 }
@@ -56,6 +52,7 @@ string:: ~string(){
 
 
 //Methods:
+
 //Method length: returns the size of the string
 size_t string::length(){
   return size_;
@@ -102,7 +99,7 @@ void string::resize(size_t n, char c){
       }
     }
     newchain[n] = '\0';
-    delete this -> data_;//Deleting the current data_ now it is not needed it any more
+    delete this -> data_; //Deleting the current data_ now it is not needed it any more
     size_ = n; //Redifining the atributes
     capacity_ = n;
     data_ = new char[size_ + 1];
