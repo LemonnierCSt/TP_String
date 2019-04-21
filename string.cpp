@@ -4,7 +4,7 @@
 
 string::string(size_t capacity){
   if(capacity<=0||capacity>MAX_SIZE){
-    std::cout<<"The capacity resquested is either <=0 or >100, so it have been automatically set to 1"<<std::endl;
+    std::cout<<"The capacity resquested is either <=0 or >100, so it has been automatically set to 1"<<std::endl;
     capacity_=1;
   }else{
     capacity_=capacity;
