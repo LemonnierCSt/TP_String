@@ -83,17 +83,28 @@ const char* string::c_str() const{
   return data_;
 }
 
-//Method resize: takes in parameter the position of the last character, and shortens the string
+//Method resize: takes in parameter the size of my new string, the caracter wanted at the end if the size asked is bigger than the actual one, and resizes the string
 void string::resize(size_t n, char c){
 
-  if(n <= size_){ //if we want to shortten the chain
-    char* newchain = new char[n+1];  //I create a new char[], and copy the old data_ in it
-    size_ = n;
-    for (size_t i = 0; i<size_; i++){
-      newchain[i] = data_[i];
+  if(n<MAX_SIZE){ //Making two branches, if the size asked is possible or not 
+    char* newchain = new char[n+1]; //Creating a new char[] where the new string will be put
+    if (n<=size_){//If we only have to shorten the string
+      for (size_t i=0; i<n; i++){
+        newchain[i]=data_[i];
+      }
     }
-    newchain[n]= '\0';
-    delete this -> data_;  //I delete the old data_ and replace it by the new one
+    else if (n>size_){//If it is needed to add caracters at the end
+      for (size_t i=0; i<size_; i++){
+        newchain[i]=data_[i];
+      }
+      for (size_t j=size_; j<n; j++){//Adding caracters until the size wanted is reached
+        newchain[j]=c;
+      }
+    }
+    newchain[n] = '\0';
+    delete this -> data_;//Deleting the current data_ now it is not needed it any more
+    size_ = n; //Redifining the atributes
+    capacity_ = n;
     data_ = new char[size_ + 1];
     for (size_t j = 0; j<= size_ ; j++){
       data_[j] = newchain[j];
@@ -101,30 +112,11 @@ void string::resize(size_t n, char c){
     delete newchain;
   }
   
-  else if((n > size_) & (size_+1 < MAX_SIZE)){ //if we want to have a longer chain
-    char* newchain = new char[n+1];
-    for (size_t i = 0; i<size_; i++){
-      newchain[i]=data_[i];
-    }
-    delete this-> data_;
-    data_ = new char[size_ + 1];
-    for (size_t i = 0; i<size_; i++){
-      data_[i]=newchain[i];
-    }
-    for (size_t j = size_; j<n; j++){
-      data_[j]=c;
-    }
-    data_[n]='\0';
-    size_ = n;
-    capacity_ = n+1;
-    delete newchain;
-  } 
-  
   else if (n > MAX_SIZE){ //If we ask for a size too big
-    std::cout << "The size you want is bigger than the maximum size" << std::endl; //message printed
+    std::cout << "The size you want must be less than 100" << std::endl; //error message printed
     delete this -> data_;
     data_ = new char[1];
-    data_[0] ='\0'; //empty char[]
+    data_[0] ='\0'; //empty char[] returned
     size_ = 0;
     capacity_ = 1;
   }
