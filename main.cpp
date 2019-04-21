@@ -58,6 +58,10 @@ int main(){
   std::cout << (nulstr.capacity()==0) << std::endl;
   std::cout << (maxlength.capacity()==100) << std::endl;
   
+  //Verifying the capacity_
+  std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
+  std::cout << (nulstr.capacity()==0) << std::endl;
+  
   //Test method length()
   std::cout << "Test method length:" << std::endl;
   std::cout << (nulstr.length()==0) << std::endl;
