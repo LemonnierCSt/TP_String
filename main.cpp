@@ -52,11 +52,13 @@ int main(){
   std::cout << (stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
-  //Test method resize --> I need data_
+  //Test method resize(size_t n, char c)
   stringloup.resize(2,'c');
   std::cout << stringloup.c_str() << std::endl;
   stringloup.resize(5,'c');
   std::cout << stringloup.c_str() << std::endl;
+  stringloup.resize(-3,'c');
+  stringloup.resize(102,'c');
     
   //Test operator = string
   stringloup = sworking;

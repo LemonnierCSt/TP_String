@@ -86,7 +86,7 @@ const char* string::c_str() const{
 //Method resize: takes in parameter the size of my new string, the caracter wanted at the end if the size asked is bigger than the actual one, and resizes the string
 void string::resize(size_t n, char c){
 
-  if(n<MAX_SIZE){ //Making two branches, if the size asked is possible or not 
+  if((n<MAX_SIZE) & (n>0)){ //Making two branches, if the size asked is possible or not 
     char* newchain = new char[n+1]; //Creating a new char[] where the new string will be put
     if (n<=size_){//If we only have to shorten the string
       for (size_t i=0; i<n; i++){
@@ -112,8 +112,8 @@ void string::resize(size_t n, char c){
     delete newchain;
   }
   
-  else if (n > MAX_SIZE){ //If we ask for a size too big
-    std::cout << "The size you want must be less than 100" << std::endl; //error message printed
+  else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big or less than 1
+    std::cout << "The size you want must be positive and less than 100" << std::endl; //error message printed
     delete this -> data_;
     data_ = new char[1];
     data_[0] ='\0'; //empty char[] returned
