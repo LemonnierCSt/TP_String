@@ -85,9 +85,7 @@ void string::resize(size_t n, char c){
   if((n<MAX_SIZE) & (n>0)){ //Making two branches, if the size asked is possible or not 
     char* newchain = new char[n+1]; //Creating a new char[] where the new string will be put
     if (n<=size_){//If we only have to shorten the string
-      for (size_t i=0; i<n; i++){
-        newchain[i]=data_[i];
-      }
+      data_[n]='\0';
     }
     else if (n>size_){//If it is needed to add caracters at the end
       for (size_t i=0; i<size_; i++){
@@ -96,25 +94,22 @@ void string::resize(size_t n, char c){
       for (size_t j=size_; j<n; j++){//Adding caracters until the size wanted is reached
         newchain[j]=c;
       }
+      newchain[n] = '\0';  
     }
-    newchain[n] = '\0';
-    delete this -> data_; //Deleting the current data_ now it is not needed it any more
+    
+    
+    delete[] this -> data_; //Deleting the current data_ now it is not needed it any more
     size_ = n; //Redifining the atributes
     capacity_ = n;
     data_ = new char[size_ + 1];
     for (size_t j = 0; j<= size_ ; j++){
       data_[j] = newchain[j];
     }
-    delete newchain;
+    delete []newchain;
   }
   
   else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big or less than 1
-    std::cout << "The size you want must be positive and less than 100" << std::endl; //error message printed
-    delete this -> data_;
-    data_ = new char[1];
-    data_[0] ='\0'; //empty char[] returned
-    size_ = 0;
-    capacity_ = 1;
+    std::cout << "The size you want must >0 and less than 100" << std::endl; //error message is printed,but no changes in the string (according to the documentation)
   }
 }
 
