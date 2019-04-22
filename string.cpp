@@ -20,7 +20,7 @@ string::string(const char* chain){
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;   
   }
-  if (nbchar<=MAX_SIZE){
+  if (nbchar<=MAX_SIZE){ //If the number of characters is less than the maximum number, I can do the following instructions
     size_ = nbchar;
     capacity_ = nbchar;
     data_ = new char[nbchar+1]; //I add a space for the '\0'
@@ -28,7 +28,7 @@ string::string(const char* chain){
       data_[i]=chain[i];
     }
   }
-  else {
+  else { //If the number of characters is bigger than the maximum
     std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message
   }
 }
@@ -36,14 +36,13 @@ string::string(const char* chain){
 //Copy constructor
 string::string(const string& str){
   data_= new char[str.capacity_+1];//Creation of an array in the heap.
-  for (size_t i =0;i<str.size_;i++){//copy the character sequence into it, included the '\0' char
+  for (size_t i =0;i<str.size_;i++){//Copies the character sequence into it, including the '\0' char
     data_[i]=str.data_[i]; 
   }
   data_[str.size_]='\0';
   size_=str.size_;
   capacity_=str.capacity_;
 }
-
 
 //Destructor
 string:: ~string(){
@@ -53,7 +52,8 @@ string:: ~string(){
 
 //Methods:
 
-//Method length: returns the size of the string
+
+//Length method: returns the size of the string
 size_t string::length(){
   return size_;
 }
@@ -65,7 +65,7 @@ size_t string::size() const{
 }
 
 
-//Method max_size: returns the maximum size a string can reach
+//Max_size method: returns the maximum size a string can reach
 size_t string::max_size(){
   return MAX_SIZE;
 }
@@ -80,18 +80,16 @@ const char* string::c_str() const{
   return data_;
 }
 
-//Method resize: takes in parameter the size of my new string, the caracter wanted at the end if the size asked is bigger than the actual one, and resizes the string
+//Resize method: takes in parameter the size of my new string, the character wanted at the end if the size asked is bigger than the actual one, and resizes the string
 void string::resize(size_t n, char c){
-
 
   if((n<=MAX_SIZE) & (n>0)){ //Making two branches, if the size asked is possible or not 
     if (n<=size_){           //If we only have to shorten the string
       data_[n]='\0';
     }
-    else if (n>size_){       //If it is needed to add caracters at the end
+    else if (n>size_){       //If it is needed to add characters at the end
       this->reserve(n);
-
-      for (size_t j=size_; j<n; j++){//Adding caracters until the size wanted is reached
+      for (size_t j=size_; j<n; j++){//Adding characters until the size wanted is reached
         data_[j]=c;
       }
       data_[n] = '\0';       
@@ -110,7 +108,7 @@ bool string::empty(){
   bool isEmpty=false;
   if(this->size_==0){ // checks the size of the string 
     isEmpty=true;     //if size_ is equal to 0, it returns isEmpty=true
-    }
+  }
   return isEmpty;
 }
 
@@ -161,26 +159,25 @@ string operator+(const string& lhs, const string& rhs) {
     return lhs;
   }
   else{
-  char* newData=new char[lhs.size_+rhs.size_ +1];//error+TEST svp ==> corrected w/ size_ instead of capacity_
-
-  for(size_t i=0;i<lhs.size_;++i){
-    newData[i]=lhs.data_[i];
-  }
-  for(size_t j=0;j<=rhs.size_;++j){
-    newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'(source d'erreur?) ==> corrected but still the same  
-  }
-  string concatenate (newData);
-  delete newData;  
-  return concatenate;
+    char* newData=new char[lhs.size_+rhs.size_ +1]; //Creating a char* the right size
+    for(size_t i=0;i<lhs.size_;++i){
+      newData[i]=lhs.data_[i];
+    }
+    for(size_t j=0;j<=rhs.size_;++j){
+      newData[j+lhs.size_]=rhs.data_[j];//copies the second string, including the '\0' 
+    }
+    string concatenate (newData);
+    delete newData;  
+    return concatenate;
   }
 }
 
 //Operator = string
 string& string::operator= (const string& str){
-  size_ = str.size_;  //changing the attributes of my string
+  size_ = str.size_;  //Changing the attributes of my string
   capacity_ = str.capacity_;
-  delete [] data_;  //I delete the old data to replace it by the new one
-  char* newdata = new char[size_+1];  //The new data_ shall be a copy, and not directly the same data//ERROR(+1!)
+  delete [] data_;  //Deleting the old data to replace it by the new one
+  char* newdata = new char[size_+1];  //The new data_ shall be a copy, and not directly the same data
   for (size_t i = 0; i<size_+1; i++){
     newdata[i] = str.data_[i];
   }
@@ -189,7 +186,7 @@ string& string::operator= (const string& str){
 }
 
 //Operator = char*
-string string::operator=(const char* c){ // c is const because we don't change It
+string string::operator=(const char* c){ // c is const because we don't change it
   size_t i=0;          
   do{                                   
     ++i;
@@ -199,13 +196,13 @@ string string::operator=(const char* c){ // c is const because we don't change I
     capacity_=MAX_SIZE;
   }
   else{
-  size_=i;  //change of size_ with the number of elements of c
-  capacity_=2*size_;   // We double the value of capacity by the size_
+    size_ = i;  //change of size_ with the number of elements of c
+    capacity_ = 2*size_;   // We double the value of capacity by the size_
   }
   delete [] data_;
-  data_=new char[size_+1];
-  for(size_t j=0;j<=size_;++j){  //copy of c in data_(until the 100th character if c's length is greater than MAX_SIZE)
-    data_[j]=c[j];
+  data_ = new char[size_+1];
+  for(size_t j = 0; j <= size_; ++j){  //copy of c in data_(until the 100th character if c's length is greater than MAX_SIZE)
+    data_[j] = c[j];
   }
   return *this;  // return the current updated object
   }                        
@@ -226,7 +223,7 @@ string& string::operator= (char c){
 
 
 //Operator +(char*)
-string operator+ (const char*   lhs, const string& rhs){
+string operator+ (const char* lhs, const string& rhs){
   size_t nb_char=0;
   while(lhs[nb_char]!='\0'){//Computes the length of the char chain
     nb_char+=1;
@@ -235,15 +232,13 @@ string operator+ (const char*   lhs, const string& rhs){
     std::cout<<"The char chain is too long, it will be shortened"<<std::endl;
     nb_char=rhs.MAX_SIZE-rhs.size_;//This shortens the char chain that will be added 
   }
-
   string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain. If 0 is passed in parameter (nullchain+ null string), this non-trivial constructor migth display an warning message, but it is not causing an error.
   tmp.size_=nb_char+rhs.size_;                          
-  for(size_t i=0;i<nb_char;++i){//copies the char chain in the new data_
+  for(size_t i=0;i<nb_char;++i){//Copies the char chain in the new data_
     tmp.data_[i]=lhs[i];
   }
-  for(size_t i=nb_char;i<=rhs.size_+nb_char;++i){//copies the string's char chain in data_
+  for(size_t i=nb_char;i<=rhs.size_+nb_char;++i){//Copies the string's char chain in data_
     tmp.data_[i]=rhs.data_[i-nb_char];
-
   }
   return tmp;    
 }

@@ -30,7 +30,9 @@ int main(){
   std::cout<<"Test operator=:"<<std::endl;
   str='c';
   std::cout<<str.c_str()<<std::endl;
- 
+  
+  
+  //Creating char[] for tests
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
   char work[5]={'w','o','r','k'};
@@ -106,7 +108,7 @@ int main(){
   string str6=(mychain+maxlength);
   std::cout<<str6.c_str()<<std::endl;
 
-  //Tests operator = (char*) method
+  //Tests operator = (char*)
   std::cout<<"Test operator = (char*): data_ and size_ "<<std::endl;
   str2=loup;
   std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
