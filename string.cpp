@@ -4,7 +4,7 @@
 
 string::string(size_t capacity){
   if(capacity<=0||capacity>MAX_SIZE){
-    std::cout<<"The capacity resquested is either <=0 or >100, so it have been automatically set to 1"<<std::endl;
+    std::cout<<"The capacity resquested is either <=0 or >100, so it has been automatically set to 1"<<std::endl;
     capacity_=1;
   }else{
     capacity_=capacity;
@@ -20,20 +20,16 @@ string::string(const char* chain){
   while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
     nbchar+=1;   
   }
-  size_ = nbchar;
-  if (nbchar<=100){
-    if(nbchar<50){
-      capacity_ = size_*2;  //If I can, I allocate twice the size_ of my chain
-    } else if((nbchar>50) & (nbchar<100)){
-      capacity_ = size_;
-    }
+  if (nbchar<=MAX_SIZE){
+    size_ = nbchar;
+    capacity_ = nbchar;
     data_ = new char[nbchar+1]; //I add a space for the '\0'
-    for (size_t i =0; i <nbchar; ++i){  //I create a new chain like the one in parameters.
+    for (size_t i =0; i <= nbchar; i++){ //Copies the null-terminated chain into data_
+
       data_[i]=chain[i];
     }
-    data_[nbchar] = '\0';//WHAT data_[nbchar+1] = '\0';
-    }
-    else {
+  }
+  else {
     std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message
   }
 }
@@ -57,6 +53,7 @@ string:: ~string(){
 
 
 //Methods:
+
 //Method length: returns the size of the string
 size_t string::length(){
   return size_;
@@ -74,9 +71,9 @@ size_t string::max_size(){
   return MAX_SIZE;
 }
 
-//Get capacity_ attribute
+//Getter of capacity_ 
 std::size_t string::capacity(){
-  return this->capacity_;       // Returns the attribute capacity_ that is protected in our class
+  return this->capacity_;// Returns the attribute capacity_ that is protected in our class
 }
 
 //Getter of the current value of the string object
@@ -84,50 +81,37 @@ const char* string::c_str() const{
   return data_;
 }
 
-//Method resize: takes in parameter the position of the last character, and shortens the string
+//Method resize: takes in parameter the size of my new string, the caracter wanted at the end if the size asked is bigger than the actual one, and resizes the string
 void string::resize(size_t n, char c){
 
-  if(n <= size_){ //if we want to shortten the chain
-    char* newchain = new char[n+1];  //I create a new char[], and copy the old data_ in it
-    size_ = n;
-    for (size_t i = 0; i<size_; i++){
-      newchain[i] = data_[i];
+  if((n<MAX_SIZE) & (n>0)){ //Making two branches, if the size asked is possible or not 
+    char* newchain = new char[n+1]; //Creating a new char[] where the new string will be put
+    if (n<=size_){//If we only have to shorten the string
+      data_[n]='\0';
     }
-    newchain[n]= '\0';
-    delete this -> data_;  //I delete the old data_ and replace it by the new one
+    else if (n>size_){//If it is needed to add caracters at the end
+      for (size_t i=0; i<size_; i++){
+        newchain[i]=data_[i];
+      }
+      for (size_t j=size_; j<n; j++){//Adding caracters until the size wanted is reached
+        newchain[j]=c;
+      }
+      newchain[n] = '\0';  
+    }
+    
+    
+    delete[] this -> data_; //Deleting the current data_ now it is not needed it any more
+    size_ = n; //Redifining the atributes
+    capacity_ = n;
     data_ = new char[size_ + 1];
     for (size_t j = 0; j<= size_ ; j++){
       data_[j] = newchain[j];
     }
-    delete newchain;
+    delete []newchain;
   }
   
-  else if((n > size_) & (size_+1 < MAX_SIZE)){ //if we want to have a longer chain
-    char* newchain = new char[n+1];
-    for (size_t i = 0; i<size_; i++){
-      newchain[i]=data_[i];
-    }
-    delete this-> data_;
-    data_ = new char[size_ + 1];
-    for (size_t i = 0; i<size_; i++){
-      data_[i]=newchain[i];
-    }
-    for (size_t j = size_; j<n; j++){
-      data_[j]=c;
-    }
-    data_[n]='\0';
-    size_ = n;
-    capacity_ = n+1;
-    delete newchain;
-  } 
-  
-  else if (n > MAX_SIZE){ //If we ask for a size too big
-    std::cout << "The size you want is bigger than the maximum size" << std::endl; //message printed
-    delete this -> data_;
-    data_ = new char[1];
-    data_[0] ='\0'; //empty char[]
-    size_ = 0;
-    capacity_ = 1;
+  else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big or less than 1
+    std::cout << "The size you want must >0 and less than 100" << std::endl; //error message is printed,but no changes in the string (according to the documentation)
   }
 }
 
@@ -153,8 +137,15 @@ void string::clear(){
 
 //Reserve method
 void string::reserve(std::size_t n){ //Changes capacity_ 
-  if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
-    capacity_=n;
+  if(n>capacity_){
+    char* tmp= data_;//Stocks the adress of the old char chain
+    data_= new char[n+1];//Creates an empty array with the requested capacity
+    capacity_=n;//Actualizes the capacity_ value
+    for (size_t i=0; i<=size_;++i){//Copies the old char chain into the new array (including '\0')
+        data_[i]=tmp[i];  
+    } 
+    delete [] tmp;
+    
   }
 }
 
@@ -167,21 +158,13 @@ string operator+ (const string& lhs, char rhs){
     }
     mychain[lhs.size_]=rhs; //Adding the char
     mychain[lhs.size_+1]='\0'; //Adding the end of the string
-
     string newstring(mychain);
-
     delete mychain;
     return newstring;
   }
   else {
     std::cout << "If you add a char, your string would be too long" << std::endl; //Error message if the size of the string reaches MAX_SIZE.
-    char* mychain = new char[1];
-    mychain[0]='\0';  //data_ will be an array with no char, directly giving '\0'
-
-    string newstring(mychain);
-
-    delete mychain;
-    return newstring;
+    return lhs; //The string in parameter is returned unchanged
   }
 }
 

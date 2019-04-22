@@ -34,41 +34,61 @@ int main(){
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
   char work[5]={'w','o','r','k'};
-
-  char* cat = new char[4];
-  cat[0]='c'; cat[1]='a'; cat[2]='t'; cat[3]='\0';
-    
+  char longchar[100]={'c'};
+  char cat[4]={'c','a','t'};
+  
+  //Creating a long char to test for the maximum size
+  int i = 0;
+  while (i  < 100){
+    longchar[i] = 'c';
+    i++;
+  }
+  
   //Using constructor c-string
   string stringloup(loup);
   string nulstr(nothing);
   string sworking(work);
   string scat(cat);
+  string maxlength(longchar);
+  
+  //Checking the capacity_
+  std::cout << "Checking the capacity of some strings:" << std::endl;
+  std::cout << (stringloup.capacity()==stringloup.length()) << std::endl;
+  std::cout << (nulstr.capacity()==0) << std::endl;
+  std::cout << (maxlength.capacity()==100) << std::endl;
   
   //Test method length()
+  std::cout << "Test method length:" << std::endl;
   std::cout << (nulstr.length()==0) << std::endl;
   std::cout << (stringloup.length()==4) << std::endl;
   
   //Test method max_size()
+  std::cout << "Test method max_size:" << std::endl;
   std::cout << (stringloup.max_size()==100) << std::endl;
   std::cout << (nulstr.max_size()==100) << std::endl;
    
-  //Test method resize --> I need data_
+  //Test method resize(size_t n, char c)
+  std::cout << "Test method resize:" << std::endl;
   stringloup.resize(2,'c');
   std::cout << stringloup.c_str() << std::endl;
   stringloup.resize(5,'c');
   std::cout << stringloup.c_str() << std::endl;
+  stringloup.resize(-3,'c');
+  stringloup.resize(102,'c');
     
   //Test operator = string
+  std::cout << "Test operator = string :" << std::endl;
   stringloup = sworking;
   std::cout << stringloup.c_str() << std::endl;
   stringloup = scat;
   std::cout << stringloup.c_str() << std::endl;
   
   //Test operator + char
-  string stringplus(stringloup + 'u');
+  std::cout << "Test operator + char :" << std::endl;
+  string stringplus = (stringloup + 'u');
   std::cout << stringplus.c_str() << std::endl;
-  
-  delete cat;
+  string otherplus = (maxlength + 'u');
+  std::cout << otherplus.c_str() << std::endl;
 
   //Tests operator + (char* and &string)
   std::cout<<"Test operator+:"<<std::endl;
