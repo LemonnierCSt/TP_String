@@ -135,8 +135,15 @@ void string::clear(){
 
 //Reserve method
 void string::reserve(std::size_t n){ //Changes capacity_ 
-  if(n>capacity_){                   //If n is greater than capacity, changes the value of capacity_
-    capacity_=n;
+  if(n>capacity_){
+    char* tmp= data_;//Stocks the adress of the old char chain
+    data_= new char[n+1];//Creates an empty array with the requested capacity
+    capacity_=n;//Actualizes the capacity_ value
+    for (size_t i=0; i<=size_;++i){//Copies the old char chain into the new array (including '\0')
+        data_[i]=tmp[i];  
+    } 
+    delete [] tmp;
+    
   }
 }
 
