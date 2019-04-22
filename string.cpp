@@ -25,7 +25,6 @@ string::string(const char* chain){
     capacity_ = nbchar;
     data_ = new char[nbchar+1]; //I add a space for the '\0'
     for (size_t i =0; i <= nbchar; i++){ //Copies the null-terminated chain into data_
-
       data_[i]=chain[i];
     }
   }
@@ -125,10 +124,6 @@ bool string::empty(){
   return isEmpty;
 }
 
-
-
-
-
 //Clear
 void string::clear(){
   data_[0]='\0';
@@ -171,19 +166,23 @@ string operator+ (const string& lhs, char rhs){
 
 //Operator + string
 string operator+(const string& lhs, const string& rhs) { 
+  if(lhs.size_+rhs.size_>lhs.MAX_SIZE){ // if the concatenation's size_ is greater than MAX_SIZE, we only return the lhs argument 
+    std::cout<<"The result is too long (of size greater than 100), the concatenation won't happen"<<std::endl;
+    return lhs;
+  }
+  else{
   char* newData=new char[lhs.size_+rhs.size_ +1];//error+TEST svp ==> corrected w/ size_ instead of capacity_
 
   for(size_t i=0;i<lhs.size_;++i){
     newData[i]=lhs.data_[i];
   }
-  for(size_t j=0;j<(rhs.size_);++j){
-    newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'(source d'erreur?) ==> corrected but still the same
-    
+  for(size_t j=0;j<=rhs.size_;++j){
+    newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'(source d'erreur?) ==> corrected but still the same  
   }
-  newData[lhs.size_+rhs.size_]='\0';
   string concatenate (newData);
   delete newData;  
   return concatenate;
+  }
 }
 
 //Operator = string
@@ -240,7 +239,7 @@ string operator+ (const char*   lhs, const string& rhs){
   }
 
 
-  string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain
+string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain
   
   if(nb_char==0){//Manages the case of a  null chain (just composed by a '\0')
     tmp.size_=0;

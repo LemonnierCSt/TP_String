@@ -112,6 +112,9 @@ int main(){
   std::cout<<"Test operator + (string)"<<std::endl;
   string concatStr=str1+str2;
   std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
+  std::cout<<"Test operator + (string) with concatenation's size greater than 100 : "<<std::endl;
+  string concatStr2=stringloup+maxlength;
+  std::cout <<"value of concatenation: "<< concatStr2.c_str()<< std::endl;
 
 
   return 0;
