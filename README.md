@@ -9,28 +9,30 @@
 * Manage gdb and the technique of debugging
 * Conception of classes and attributes in group
 
-##Getting started
-###Prerequisites
+## Getting started
+
+### Prerequisites
+
 None
 
-###Installing
+### Installing
 None
 
-##Running the tests
+## Running the tests
 There is a bunch of unitary tests made to check each method of our program. They are done in *main.cpp* .
 
 The program runs by the *make* and *./main* commands in the terminal.
 
 
-##Versioning
+## Versioning
 We used GitHub for versioning. A .git file is available with the history of all the commits and merge done by the members of the group.
 
-##Authors
+## Authors
 * Armande CIROT : coding part N°2
 * Claire LEMMONIER : coding part N°1
 * Anissa EL MARRAHI : coding part N°3
 
-##Aknowledgments
+## Aknowledgments
 * Methods in standard class string : [cppreference.com](https://en.cppreference.com/w/cpp/string/basic_string)
 * Sofware development (D. PARSONS) courses
 * stackOverflow.com and GeeksforGeeks sites as help.
