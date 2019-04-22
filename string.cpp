@@ -108,7 +108,7 @@ void string::resize(size_t n, char c){
     delete []newchain;
   }
   
-  else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big or less than 1
+  else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big, equals to 0, or negative. We take also the case 0 because the method clear already exists to clear data_
     std::cout << "The size you want must >0 and less than 100" << std::endl; //error message is printed,but no changes in the string (according to the documentation)
   }
 }
@@ -174,7 +174,7 @@ string operator+(const string& lhs, const string& rhs) {
     newData[i]=lhs.data_[i];
   }
   for(size_t j=0;j<=(rhs.size_);++j){
-    newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'(source d'erreur?)
+    newData[j+lhs.size_]=rhs.data_[j];//copies the second string, including the '\0'(source d'erreur?)
   }
   string concatenate (newData);
   delete newData;
