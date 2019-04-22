@@ -28,7 +28,7 @@ The program runs by the *make* and *./main* commands in the terminal.
 We used GitHub for versioning. A .git file is available with the history of all the commits and merge done by the members of the group.
 
 ## Authors
-* Armande CIROT : coding part N°2
+* Armande CIROT : coding part N°2 (with an other alias in git commits : Mendioca)
 * Claire LEMMONIER : coding part N°1
 * Anissa EL MARRAHI : coding part N°3
 
