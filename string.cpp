@@ -154,21 +154,13 @@ string operator+ (const string& lhs, char rhs){
     }
     mychain[lhs.size_]=rhs; //Adding the char
     mychain[lhs.size_+1]='\0'; //Adding the end of the string
-
     string newstring(mychain);
-
     delete mychain;
     return newstring;
   }
   else {
     std::cout << "If you add a char, your string would be too long" << std::endl; //Error message if the size of the string reaches MAX_SIZE.
-    char* mychain = new char[1];
-    mychain[0]='\0';  //data_ will be an array with no char, directly giving '\0'
-
-    string newstring(mychain);
-
-    delete mychain;
-    return newstring;
+    return lhs; //The string in parameter is returned unchanged
   }
 }
 
