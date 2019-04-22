@@ -136,7 +136,7 @@ void string::reserve(std::size_t n){ //Changes capacity_
 
 //Operator + char
 string operator+ (const string& lhs, char rhs){
-  if (2+lhs.size_ < lhs.MAX_SIZE){
+  if (1+lhs.size_ <= lhs.MAX_SIZE){
     char* mychain = new char[lhs.size_+2]; //I add a space for the '\0'
     for (size_t i =0; i < lhs.size_; i++){  //I create a new chain like the one in parameters.
       mychain[i]=lhs.data_[i];
