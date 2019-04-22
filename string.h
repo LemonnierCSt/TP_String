@@ -5,11 +5,14 @@
 
 class string{
 
-  friend string operator+ (const char*   lhs, const string& rhs);
-  
-  friend string operator+ (const string& lhs, char rhs); 
+// The following operators are not part of the string class, but are friends of her: they will thereby be able to use easily it's attributes
 
-  friend string operator+(const string& lhs, const string& rhs);
+  //Operator + char*
+  friend string operator+ (const char*   lhs, const string& rhs);
+  //Operator + char
+  friend string operator+ (const string& lhs, char rhs); 
+  //Operator + string
+  friend string operator+ (const string& lhs, const string& rhs);
   
   protected:
   char* data_;
@@ -18,52 +21,39 @@ class string{
   static const size_t MAX_SIZE=100;//maximum length the string can reach.
   
   public:
-  //Constructors
+  //Constructor with capacity
     string(std::size_t capacity); 
   //Constructor c-string
-    string(const char* chain);
-  //Method length
-    size_t length();
-  //Method max_size
-    size_t max_size();
-  //Method resize
-    void resize(size_t n, char c);
-  //Destructor
-    ~string();
-  //Get capacity_ attribute
-    std::size_t capacity();
-  //empty method
-    bool empty();
+    string(const char* chain);  
   //Copy constructor
     string(const string& str);
-  //Getter of the current value of the string object
-    const char* c_str ()const; 
-  //Operator = string
-    string& operator= (const string& str);
-
+  //Destructor
+    ~string();  
+    
+  //Method length, getter of the current length of the string
+    size_t length();  
   //Getter of the current length of the string, in terms of bytes.
     size_t size() const;
-
-  // reserve method
+  //Resize method
+    void resize(size_t n, char c);
+  //Get capacity_ attribute
+    std::size_t capacity();
+  //Max_size method
+    size_t max_size();     
+  //Getter of the current value of the string object
+    const char* c_str ()const;   
+  //Reserve method
     void reserve(std::size_t n);
-
-  //Erases the contents of the string, which becomes an empty string (with a length of 0 characters).
+  //empty method
+    bool empty();
+  //Erases the contents of the string, which becomes an empty string (with a length of 0 character).
     void clear();  
-    
-  // operator = method ( cha* for parameter)
-    string operator=(const char* c);
-
-    
-  //Operator = 
+  //Operator = string
+    string& operator= (const string& str);    
+  //Operator = char*
+    string operator= (const char* c);    
+  //Operator = char
     string& operator= (char c);
-  
 };
-/*  
- //Operator +(char*)
-    string operator+ (const char*   lhs, const string& rhs);
-  //Operator+ (&string+&string)
-    string operator+(const string& lhs, const string& rhs);
-  //Operator + char
-    string operator+ (const string& lhs, char rhs); 
-*///Useless?
+
 #endif //STRING_
