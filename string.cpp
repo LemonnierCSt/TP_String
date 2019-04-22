@@ -144,7 +144,7 @@ string operator+ (const string& lhs, char rhs){
     mychain[lhs.size_]=rhs; //Adding the char
     mychain[lhs.size_+1]='\0'; //Adding the end of the string
     string newstring(mychain);
-    delete mychain;
+    delete[] mychain;
     return newstring;
   }
   else {
