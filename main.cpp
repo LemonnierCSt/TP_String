@@ -107,6 +107,10 @@ int main(){
   str2=loup;
   std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
   std::cout <<"size_ value : "<< (str2.length()) << std::endl;
+  std::cout<<"Test operator = (char*) with a char* 's size equal to 100"<<std::endl;
+  str2=longchar;
+  std::cout <<"data_ value : "<< (str2.c_str()) << std::endl;
+  std::cout <<"size_ value : "<< (str2.length()) << std::endl;
   
   //Test operator + (string arguments)
   std::cout<<"Test operator + (string)"<<std::endl;

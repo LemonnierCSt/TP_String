@@ -200,17 +200,25 @@ string& string::operator= (const string& str){
 
 //Operator = char*
 string string::operator=(const char* c){ // c is const because we don't change It
-  
-  int i=0;            
-  do{                                   //copy of c in data_
-    data_[i]=c[i];
+  int i=0;          
+  do{                                   
     ++i;
   }while(c[i]!='\0');
-  size_=i;                              //change of size_ with the number of elements of c
-  capacity_=2*size_;                    // We double the value of capacity by the size_
-  data_[size_]='\0';
-  return *this;                         // return the current updated object
-}  
+  if(i>MAX_SIZE){   // If the number of characters of c is > MAX_SIZE we "cut" at the 100th character
+    size_=MAX_SIZE; 
+    capacity_=MAX_SIZE;
+  }
+  else{
+  size_=i;  //change of size_ with the number of elements of c
+  capacity_=2*size_;   // We double the value of capacity by the size_
+  }
+  delete [] data_;
+  data_=new char[size_+1];
+  for(int j=0;j<=size_;++j){  //copy of c in data_(until the 100th character if c's length is greater than MAX_SIZE)
+    data_[j]=c[j];
+  }
+  return *this;  // return the current updated object
+  }                        
 
 
 //Operator = char
