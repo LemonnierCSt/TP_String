@@ -85,9 +85,9 @@ int main(){
   
   //Test operator + char
   std::cout << "Test operator + char :" << std::endl;
-  string stringplus(stringloup + 'u');
+  string stringplus = (stringloup + 'u');
   std::cout << stringplus.c_str() << std::endl;
-  string otherplus(maxlength + 'u');
+  string otherplus = (maxlength + 'u');
   std::cout << otherplus.c_str() << std::endl;
 
   //Tests operator + (char* and &string)
