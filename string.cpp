@@ -17,19 +17,19 @@ string::string(size_t capacity){
 //Constructor c-string (by parameter)
 string::string(const char* chain){
   size_t nbchar = 0;
-  while (chain[nbchar]!='\0'){  //I count the number of chars in my chain
+  while (chain[nbchar]!='\0'){  //Count the numbers of characters in chain
     nbchar+=1;   
   }
   if (nbchar<=MAX_SIZE){
     size_ = nbchar;
     capacity_ = nbchar;
-    data_ = new char[nbchar+1]; //I add a space for the '\0'
-    for (size_t i =0; i <= nbchar; i++){ //Copies the null-terminated chain into data_
+    data_ = new char[nbchar+1]; //Creation of a char array of size nbchar +1 for '\0' at the end
+    for (size_t i =0; i <= nbchar; i++){ //Copy of the null-terminated chain into data_
       data_[i]=chain[i];
     }
   }
   else {
-    std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message
+    std::cout << "Your chain is too long : 100 char max please" << std::endl; //If the chain is too long, error message, therefore, the string object cannot be created
   }
 }
 
@@ -51,7 +51,7 @@ string:: ~string(){
 }
 
 
-//Methods:
+//METHODS
 
 //Method length: returns the size of the string
 size_t string::length(){
@@ -72,7 +72,7 @@ size_t string::max_size(){
 
 //Getter of capacity_ 
 std::size_t string::capacity(){
-  return this->capacity_;// Returns the attribute capacity_ that is protected in our class
+  return capacity_;// Returns the attribute capacity_ that is protected in our class
 }
 
 //Getter of the current value of the string object
@@ -105,16 +105,16 @@ void string::resize(size_t n, char c){
 }
 
 
-//Empty method
+//Empty method : checks if the string is empty
 bool string::empty(){
   bool isEmpty=false;
-  if(this->size_==0){ // checks the size of the string 
+  if(size_==0){ // checks the size of the string 
     isEmpty=true;     //if size_ is equal to 0, it returns isEmpty=true
     }
   return isEmpty;
 }
 
-//Clear
+//Clear method
 void string::clear(){
   data_[0]='\0';
   size_=0;
@@ -134,17 +134,17 @@ void string::reserve(std::size_t n){ //Changes capacity_
   }
 }
 
-//Operator + char
+//Operator + (char as an argument)
 string operator+ (const string& lhs, char rhs){
   if (1+lhs.size_ <= lhs.MAX_SIZE){
-    char* mychain = new char[lhs.size_+2]; //I add a space for the '\0'
-    for (size_t i =0; i < lhs.size_; i++){  //I create a new chain like the one in parameters.
+    char* mychain = new char[lhs.size_+2]; //Creation of an array with space for lhs + for rhs+ for'\0'
+    for (size_t i =0; i < lhs.size_; i++){  //Copy of the elements of the arguments in mychain
       mychain[i]=lhs.data_[i];
     }
-    mychain[lhs.size_]=rhs; //Adding the char
-    mychain[lhs.size_+1]='\0'; //Adding the end of the string
-    string newstring(mychain);
-    delete[] mychain;
+    mychain[lhs.size_]=rhs; //Addition ofthe char
+    mychain[lhs.size_+1]='\0'; //Addition of '\0' at the end of mychain 
+    string newstring(mychain); // Creation of a new string object with data_ = mychain
+    delete[] mychain;  // delete mychain (free the allocation of mychain)
     return newstring;
   }
   else {
@@ -161,16 +161,16 @@ string operator+(const string& lhs, const string& rhs) {
     return lhs;
   }
   else{
-  char* newData=new char[lhs.size_+rhs.size_ +1];//error+TEST svp ==> corrected w/ size_ instead of capacity_
+  char* newData=new char[lhs.size_+rhs.size_ +1];//Creation of a new char array whichi will contain lhs and rhs +1 for the '\0'
 
-  for(size_t i=0;i<lhs.size_;++i){
+  for(size_t i=0;i<lhs.size_;++i){  //Copy of lhs in newData without including '\0' in newData
     newData[i]=lhs.data_[i];
   }
   for(size_t j=0;j<=rhs.size_;++j){
-    newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'(source d'erreur?) ==> corrected but still the same  
+    newData[j+lhs.size_]=rhs.data_[j];//copy the second string, including the '\0'
   }
-  string concatenate (newData);
-  delete newData;  
+  string concatenate (newData); //Creation of a string object with Its data_ = newData
+  delete []newData;  // free the allocation of memory for newData
   return concatenate;
   }
 }
@@ -180,7 +180,7 @@ string& string::operator= (const string& str){
   size_ = str.size_;  //changing the attributes of my string
   capacity_ = str.capacity_;
   delete [] data_;  //I delete the old data to replace it by the new one
-  char* newdata = new char[size_+1];  //The new data_ shall be a copy, and not directly the same data//ERROR(+1!)
+  char* newdata = new char[size_+1];  //The new data_ shall be a copy, and not directly the same data
   for (size_t i = 0; i<size_+1; i++){
     newdata[i] = str.data_[i];
   }
@@ -200,7 +200,7 @@ string string::operator=(const char* c){ // c is const because we don't change I
   }
   else{
   size_=i;  //change of size_ with the number of elements of c
-  capacity_=2*size_;   // We double the value of capacity by the size_
+  capacity_=size_;   // capacity_ take the same value of size_ here because It's not necessary to have bigger space here (reserve or resize could be called in this case)
   }
   delete [] data_;
   data_=new char[size_+1];
@@ -213,11 +213,11 @@ string string::operator=(const char* c){ // c is const because we don't change I
 
 //Operator = char
 string& string::operator= (char c){
-  if (capacity_<1){
+  if (capacity_<1){ //If capacity_ is a negative number or null-number, we allocate space for data_
     delete[] data_;
     data_= new char[2];
   }
-  data_[0]=c;
+  data_[0]=c; // data_ will contain only one character : c
   data_[1]='\0';
   size_ = 1;
   capacity_ =1;

@@ -12,25 +12,30 @@ int main(){
   string str1(cap1);
   std::cout<<(str1.empty()==false)<<std::endl;// Unitary test : checks the empty() method, must return 1
 
+  // c_str test	
   string str2(cap);
   std::cout<<"Test c_str:"<<std::endl;
   std::cout<<str.c_str()<<std::endl;
 
+  //reserve() method tests
   std::cout<<"Test size:"<<std::endl;
   std::cout<<str.size()<<std::endl;
   str2.reserve(20);
   std::cout<<"Test reserve:"<<std::endl;
   std::cout<<(str2.capacity()==20)<<std::endl; 
 
+  //clear method test
   std::cout<<"Test clear:"<<std::endl;
   std::cout<<str.c_str()<<std::endl;
   str.clear();
   std::cout<<str.c_str()<<std::endl;
-  
+
+  //operator = (char) test  
   std::cout<<"Test operator=:"<<std::endl;
   str='c';
   std::cout<<str.c_str()<<std::endl;
- 
+
+  //Creation of char arrays and string needed for the following tests 
   char loup [5]={'l','o','u','p'} ;
   char nothing[5]={'\0','a','b'};
   char work[5]={'w','o','r','k'};
@@ -118,7 +123,7 @@ int main(){
   
   //Test operator + (string arguments)
   std::cout<<"Test operator + (string)"<<std::endl;
-  string concatStr=str1+str2;
+  string concatStr=scat+scat;
   std::cout <<"value of concatenation: "<< concatStr.c_str()<< std::endl;
   std::cout<<"Test operator + (string) with concatenation's size greater than 100 : "<<std::endl;
   string concatStr2=stringloup+maxlength;
