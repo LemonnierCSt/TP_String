@@ -43,6 +43,7 @@ int main(){
     longchar[i] = 'c';
     i++;
   }
+  longchar[100]='\0';
   
   //Using constructor c-string
   string stringloup(loup);
@@ -104,7 +105,6 @@ int main(){
   
   string str6=(mychain+maxlength);
   std::cout<<str6.c_str()<<std::endl;
-  
 
   //Tests operator = (char*) method
   std::cout<<"Test operator = (char*): data_ and size_ "<<std::endl;
