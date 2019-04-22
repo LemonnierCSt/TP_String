@@ -190,7 +190,7 @@ string& string::operator= (const string& str){
 
 //Operator = char*
 string string::operator=(const char* c){ // c is const because we don't change It
-  int i=0;          
+  size_t i=0;          
   do{                                   
     ++i;
   }while(c[i]!='\0');
@@ -204,7 +204,7 @@ string string::operator=(const char* c){ // c is const because we don't change I
   }
   delete [] data_;
   data_=new char[size_+1];
-  for(int j=0;j<=size_;++j){  //copy of c in data_(until the 100th character if c's length is greater than MAX_SIZE)
+  for(size_t j=0;j<=size_;++j){  //copy of c in data_(until the 100th character if c's length is greater than MAX_SIZE)
     data_[j]=c[j];
   }
   return *this;  // return the current updated object
