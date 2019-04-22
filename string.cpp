@@ -83,12 +83,12 @@ const char* string::c_str() const{
 //Method resize: takes in parameter the size of my new string, the caracter wanted at the end if the size asked is bigger than the actual one, and resizes the string
 void string::resize(size_t n, char c){
 
-  if((n<MAX_SIZE) & (n>0)){ //Making two branches, if the size asked is possible or not 
+  if((n<MAX_SIZE) & (n>0)){         //Making two branches, if the size asked is possible or not 
     char* newchain = new char[n+1]; //Creating a new char[] where the new string will be put
-    if (n<=size_){//If we only have to shorten the string
+    if (n<=size_){                  //If we only have to shorten the string
       data_[n]='\0';
     }
-    else if (n>size_){//If it is needed to add caracters at the end
+    else if (n>size_){              //If it is needed to add caracters at the end
       for (size_t i=0; i<size_; i++){
         newchain[i]=data_[i];
       }
@@ -99,8 +99,8 @@ void string::resize(size_t n, char c){
     }
     
     
-    delete[] this -> data_; //Deleting the current data_ now it is not needed it any more
-    size_ = n; //Redifining the atributes
+    delete[] this -> data_;          //Deleting the current data_ now it is not needed it any more
+    size_ = n;                       //Redifining the atributes
     capacity_ = n;
     data_ = new char[size_ + 1];
     for (size_t j = 0; j<= size_ ; j++){
@@ -109,7 +109,7 @@ void string::resize(size_t n, char c){
     delete []newchain;
   }
   
-  else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big or less than 1
+  else if ((n > MAX_SIZE) || (n<=0)){ //If we ask for a size too big, equals to 0, or negative. We take also the case 0 because the method clear already exists to clear data_
     std::cout << "The size you want must >0 and less than 100" << std::endl; //error message is printed,but no changes in the string (according to the documentation)
   }
 }
@@ -241,28 +241,20 @@ string operator+ (const char*   lhs, const string& rhs){
   while(lhs[nb_char]!='\0'){//Computes the length of the char chain
     nb_char+=1;
   }
-  if(nb_char>(rhs.MAX_SIZE-rhs.size_)){//CheckS that the concatenation of the lhs and rhs is not longer that MAX_SIZE
+  if(nb_char>(rhs.MAX_SIZE-rhs.size_)){//Checks that the concatenation of the lhs and rhs is not longer than MAX_SIZE
     std::cout<<"The char chain is too long, it will be shortened"<<std::endl;
-    nb_char=rhs.MAX_SIZE-rhs.size_;//This allows to shorten the char chain that will be be added 
+    nb_char=rhs.MAX_SIZE-rhs.size_;//This shortens the char chain that will be added 
   }
 
-
-string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain
-  
-  if(nb_char==0){//Manages the case of a  null chain (just composed by a '\0')
-    tmp.size_=0;
-    tmp.data_[0]='\0';
-  }else{//Manages the case of a  not null chain 
-    tmp.size_=nb_char+rhs.size_;                          
-    for(size_t i=0;i<nb_char+rhs.size_;++i){//copy the char chain
-      tmp.data_[i]=lhs[i];
-    }
-    for(size_t i=nb_char;i<rhs.size_+nb_char;++i){//copy the string's char chain
-      tmp.data_[i]=rhs.data_[nb_char-i];
-    }
+  string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain
+  tmp.size_=nb_char+rhs.size_;                          
+  for(size_t i=0;i<nb_char;++i){//copies the char chain in the new data_
+    tmp.data_[i]=lhs[i];
   }
-      
-      
+  for(size_t i=nb_char;i<=rhs.size_+nb_char;++i){//copies the string's char chain in data_
+    tmp.data_[i]=rhs.data_[i-nb_char];
+
+  }
   return tmp;    
 }
 

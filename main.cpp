@@ -70,7 +70,7 @@ int main(){
   //Test method resize(size_t n, char c)
   std::cout << "Test method resize:" << std::endl;
   stringloup.resize(2,'c');
-  std::cout << stringloup.c_str() << std::endl;
+  std::cout << (stringloup.c_str()) << std::endl;
   stringloup.resize(5,'c');
   std::cout << stringloup.c_str() << std::endl;
   stringloup.resize(-3,'c');
@@ -95,11 +95,15 @@ int main(){
   std::cout<<str.c_str()<<std::endl;
   char mychain[6]={'a','d','d','e','d','\0'};
   string str3=mychain+str;
-  std::cout<<(str3.c_str()[5]=='c')<<std::endl;
-  
+  std::cout<<(str3.c_str()[6]=='\0')<<std::endl;
   char mychain2[6]={'\0'};
   string str4=(mychain2+str);
-  std::cout<<str4.c_str()<<std::endl;
+  std::cout<<(str4.c_str()[0]=='c')<<std::endl;
+  string str5=(mychain2+nulstr);
+  std::cout<<(str5.c_str()[0]=='\0')<<std::endl;
+  
+  string str6=(mychain+maxlength);
+  std::cout<<str6.c_str()<<std::endl;
   
 
   //Tests operator = (char*) method
