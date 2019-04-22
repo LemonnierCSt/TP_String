@@ -212,7 +212,7 @@ string string::operator=(const char* c){ // c is const because we don't change I
 
 
 //Operator = char
-string& string::operator= (char c){//use clear maybe? ou empty?
+string& string::operator= (char c){
   if (capacity_<1){
     delete[] data_;
     data_= new char[2];
@@ -236,7 +236,7 @@ string operator+ (const char*   lhs, const string& rhs){
     nb_char=rhs.MAX_SIZE-rhs.size_;//This shortens the char chain that will be added 
   }
 
-  string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain
+  string tmp(nb_char+rhs.size_);//string object with a capacity = size of the string+ the size of the char chain. If 0 is passed in parameter (nullchain+ null string), this non-trivial constructor migth display an warning message, but it is not causing an error.
   tmp.size_=nb_char+rhs.size_;                          
   for(size_t i=0;i<nb_char;++i){//copies the char chain in the new data_
     tmp.data_[i]=lhs[i];
